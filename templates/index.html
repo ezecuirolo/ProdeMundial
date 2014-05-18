@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body_content %}
+
+{% for grupo,datos_grupo in fixture|dictsort %}
+<form method="post">
+    <div class="ronda">
+        <div class="{{datos_grupo.tipo}}">
+            <div class="titulo">GRUPO {{grupo}}</div>
+            <div class="partidos">
+                <table>
+                    <tbody>
+                        {% for partido in datos_grupo.partidos %}
+                        <tr>
+                            <td class="equipo">{{partido.equipo1}}</td>
+                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"/></td>
+                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
+                            <td class="equipo">{{partido.equipo2}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</form>
+
+{% endblock %}
