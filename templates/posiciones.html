@@ -3,4 +3,25 @@
 {% block body_content %}
 <h2>Posiciones</h2>
 
+<div class="posiciones">
+    <table>
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th>Nombre</th>
+                <th>Puntaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>TO DO</td>
+                <td>{{usuario.name}}</td>
+                <td>{{usuario.puntaje}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

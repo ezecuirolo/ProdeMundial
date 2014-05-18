@@ -284,7 +284,11 @@ class ReglasHandler(Handler):
 ########## LOGOUT HANDLER ##########
 class PosicionesHandler(Handler):
     def get(self):
-        self.render('posiciones.html')
+        usuarios = dbmodels.User.all()
+        usuarios.order("-puntaje")
+        usuarios = list(usuarios)
+
+        self.render('posiciones.html', usuarios = usuarios)
 
 
 ########## MAIN PAGE HANDLER ##########

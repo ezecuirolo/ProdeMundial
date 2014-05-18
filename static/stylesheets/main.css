@@ -173,3 +173,35 @@ input[type=submit] {
     text-align: center;
 }
 
+.posiciones {
+    display: inline-block;
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
+.posiciones table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 80%;
+}
+
+.posiciones th {
+    font-size: 120%;
+    border-bottom: 2px solid #6678B1;
+}
+
+.posiciones td {
+    padding: 9px 8px 0px 8px;
+}
