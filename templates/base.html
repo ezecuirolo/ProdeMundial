@@ -7,11 +7,10 @@
     </head>
 
     <body>
-        <a href="/" class="main-title">Prode Mundial 2014</a>
 
         <div class="controles">
             <a href="/reglas">reglas</a>
-            <a href="/reglas">posiciones</a>
+            <a href="/posiciones">posiciones</a>
             {% if user %}
             <span>{{user.name}} (<a href="/logout">logout</a>)</span>
             {% else %}
@@ -19,6 +18,8 @@
             <a href="/signup">sign up</a>
             {% endif %}
         </div>
+
+        <a href="/" class="main-title">Prode Mundial 2014</a>
 
         {% block body_content %}
         {% endblock %}
