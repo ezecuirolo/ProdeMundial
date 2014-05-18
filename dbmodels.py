@@ -1,20 +1,20 @@
 from google.appengine.ext import db
 import utils
 
-class WikiPage(db.Model):
-    name = db.StringProperty(required = True)
-    content = db.TextProperty(required = True)
+class Resultado(db.Model):
+    user = db.StringProperty(required = True)
+    resultados = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
 
     @classmethod
-    def by_name(cls, page_name):
-        q = cls.all().filter('name =', page_name)
+    def by_user(cls, user):
+        q = cls.all().filter('user =', user)
         q.order("-created")
         return q
 
     @classmethod
-    def by_id(cls, page_id, page_name):
-        return cls.get_by_id(page_id)
+    def by_id(cls, resultado_id):
+        return cls.get_by_id(resultado_id)
 
 
 class User(db.Model):

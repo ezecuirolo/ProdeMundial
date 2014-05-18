@@ -43,7 +43,7 @@ EQUIPOS={
         {"code": "FRA", "key": "fra", "title": "Francia"},
         {"code": "HON", "key": "hon", "title": "Honduras"}]},
     {"group": "F", "teams": [
-        {"code": "ARG", "key": "arg", "title": "Argentina"},
+        {"code": "ARG", "key": "arg", "title": "ARGENTINA"},
         {"code": "BIH", "key": "bih", "title": "Bosnia"},
         {"code": "IRN", "key": "irn", "title": u'Irán'},
         {"code": "NGA", "key": "nga", "title": "Nigeria"}]},
@@ -72,6 +72,93 @@ def getNombreEquipo(codigo_equipo):
                 return equipo["title"]
 
 
+def getResultado(user, update = False):
+    key = 'resultado_' + user
+    resultado = memcache.get(key)
+
+    if resultado is None or update:
+        resultado = dbmodels.Resultado.by_user(user).get()
+        if resultado:
+            memcache.set(key, resultado)
+
+    return resultado
+
+
+def saveResultado(username, resultados):
+    key = 'resultado_' + username
+    resultado = getResultado(username)
+    if resultado:
+        resultado.resultados = resultados
+    else:
+        resultado = dbmodels.Resultado(user = username, resultados = resultados)
+
+    resultado.put()
+    memcache.set(key, resultado)
+
+
+def getFixture(username = None):
+    resultados = None
+    if username:
+        resultado = getResultado(username)
+        if resultado:
+            resultados = json.loads(resultado.resultados)
+
+    for round in range(1,20):
+        key = str(round)
+        ronda = memcache.get(key)
+        if ronda is None:
+            url = 'http://footballdb.herokuapp.com/api/v1/event/world.2014/round/' + str(round)
+            round_data = urllib2.urlopen(url).read()
+            round_json = json.loads(round_data)
+            memcache.set(key, round_json)
+
+    fixture = {'A': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'B': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'C': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'D': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'E': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'F': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'G': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               'H': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
+               }
+        
+    for round in range(1, 20):
+        key = str(round)
+        ronda = memcache.get(key)
+        for game in ronda["games"]:
+            grupo = getGrupoDeEquipo(game["team1_code"])
+            equipo1 = getNombreEquipo(game["team1_code"])
+            equipo2 = getNombreEquipo(game["team2_code"])
+            scoreRealEquipo1 = game["score1"]
+            scoreRealEquipo2 = game["score2"]
+
+            if scoreRealEquipo1 is None:
+                scoreRealEquipo1 = "-"
+
+            if scoreRealEquipo2 is None:
+                scoreRealEquipo2 = "-"
+
+            scoreEquipo1 = ""
+            scoreEquipo2 = ""
+            if resultados:
+                keyScore1 = equipo1 + "_vs_" + equipo2 + "_score1"
+                scoreEquipo1 = resultados[keyScore1]
+                keyScore2 = equipo1 + "_vs_" + equipo2 + "_score2"
+                scoreEquipo2 = resultados[keyScore2]
+
+
+            fecha = game["play_at"]
+
+            partido = {"fecha": fecha,
+                       "equipo1": equipo1,
+                       "equipo2": equipo2,
+                       "scoreEquipo1": scoreEquipo1,
+                       "scoreEquipo2": scoreEquipo2,
+                       "scoreRealEquipo1": scoreRealEquipo1,
+                       "scoreRealEquipo2": scoreRealEquipo2}
+            fixture[grupo]["partidos"].append(partido)
+
+    return fixture    
 
 ########## BASE HANDLER ##########
 class Handler(webapp2.RequestHandler):
@@ -203,52 +290,24 @@ class PosicionesHandler(Handler):
 ########## MAIN PAGE HANDLER ##########
 class MainPageHandler(Handler):
     def get(self):
-        for round in range(1,20):
-            key = str(round)
-            ronda = memcache.get(key)
-            if ronda is None:
-                url = 'http://footballdb.herokuapp.com/api/v1/event/world.2014/round/' + str(round)
-                round_data = urllib2.urlopen(url).read()
-                round_json = json.loads(round_data)
-                memcache.set(key, round_json)
-
-        fixture = {'A': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'B': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'C': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'D': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'E': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'F': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'G': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   'H': {'tipo': 'grupo', 'permite-modificar': True, 'partidos': []},
-                   }
-        
-        for round in range(1, 20):
-            key = str(round)
-            ronda = memcache.get(key)
-            for game in ronda["games"]:
-                grupo = getGrupoDeEquipo(game["team1_code"])
-                equipo1 = getNombreEquipo(game["team1_code"])
-                equipo2 = getNombreEquipo(game["team2_code"])
-                scoreEquipo1 = game["score1"]
-                scoreEquipo2 = game["score2"]
-
-                if scoreEquipo1 is None:
-                    scoreEquipo1 = ""
-
-                if scoreEquipo2 is None:
-                    scoreEquipo2 = ""
-
-
-                fecha = game["play_at"]
-
-                partido = {"fecha": fecha,
-                           "equipo1": equipo1,
-                           "equipo2": equipo2,
-                           "scoreEquipo1": scoreEquipo1,
-                           "scoreEquipo2": scoreEquipo2}
-                fixture[grupo]["partidos"].append(partido)
-                
-
-
+        fixture = getFixture(self.user.name)
             
         self.render("index.html", fixture = fixture);
+
+    def post(self):
+        fixture = getFixture()
+        resultados = {}
+
+        for grupo, datos_grupo in fixture.iteritems():
+            # logging.error(grupo)
+            for partido in datos_grupo["partidos"]:
+                keyScore1 = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score1"
+                keyScore2 = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score2"
+                valueScore1 = self.request.get(keyScore1)
+                valueScore2 = self.request.get(keyScore2)
+
+                resultados[keyScore1] = valueScore1
+                resultados[keyScore2] = valueScore2
+
+        saveResultado(self.user.name, json.dumps(resultados))
+        self.redirect("/")

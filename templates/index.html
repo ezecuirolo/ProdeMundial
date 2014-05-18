@@ -2,8 +2,8 @@
 
 {% block body_content %}
 
-{% for grupo,datos_grupo in fixture|dictsort %}
 <form method="post">
+    {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="ronda">
         <div class="{{datos_grupo.tipo}}">
             <div class="titulo">GRUPO {{grupo}}</div>
@@ -24,6 +24,7 @@
         </div>
     </div>
     {% endfor %}
+    <input type="submit"/>
 </form>
 
 {% endblock %}
