@@ -189,6 +189,16 @@ class LogoutHandler(Handler):
         self.response.delete_cookie('user_id')
         self.redirect('/')
 
+########## LOGOUT HANDLER ##########
+class ReglasHandler(Handler):
+    def get(self):
+        self.render('reglas.html')
+
+########## LOGOUT HANDLER ##########
+class PosicionesHandler(Handler):
+    def get(self):
+        self.render('posiciones.html')
+
 
 ########## MAIN PAGE HANDLER ##########
 class MainPageHandler(Handler):
