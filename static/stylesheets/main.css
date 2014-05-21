@@ -168,10 +168,16 @@ input[type=submit] {
     width: 25px;
 }
 
-.resultado input {
+.resultado.radiooption {
+    width: 3px;
+    padding: 0px;
+}
+
+.resultado input[type=text] {
     width: 100%;
     text-align: center;
 }
+
 
 .posiciones {
     display: inline-block;

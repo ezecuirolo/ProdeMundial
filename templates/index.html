@@ -13,8 +13,19 @@
                         {% for partido in datos_grupo.partidos %}
                         <tr>
                             <td class="equipo">{{partido.equipo1}}</td>
-                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"/></td>
+                            <td class="resultado radiooption"><input type="radio" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
+                                {% if partido.primerGol == partido.equipo1 %}
+                                checked
+                                {% endif %}
+                                /></td>
+                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"
+                                /></td>
                             <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
+                            <td class="resultado radiooption"><input type="radio" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
+                                {% if partido.primerGol == partido.equipo2 %}
+                                checked
+                                {% endif %}
+                                /></td>
                             <td class="equipo">{{partido.equipo2}}</td>
                         </tr>
                         {% endfor %}

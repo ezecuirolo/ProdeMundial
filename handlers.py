@@ -140,11 +140,14 @@ def getFixture(username = None):
 
             scoreEquipo1 = ""
             scoreEquipo2 = ""
+            primerGol = ""
             if resultados:
                 keyScore1 = equipo1 + "_vs_" + equipo2 + "_score1"
                 scoreEquipo1 = resultados[keyScore1]
                 keyScore2 = equipo1 + "_vs_" + equipo2 + "_score2"
                 scoreEquipo2 = resultados[keyScore2]
+                keyPrimerGol = equipo1 + "_vs_" + equipo2 + "_primer_gol"
+                primerGol = resultados[keyPrimerGol]
 
 
             fecha = game["play_at"]
@@ -155,12 +158,13 @@ def getFixture(username = None):
                        "scoreEquipo1": scoreEquipo1,
                        "scoreEquipo2": scoreEquipo2,
                        "scoreRealEquipo1": scoreRealEquipo1,
-                       "scoreRealEquipo2": scoreRealEquipo2}
+                       "scoreRealEquipo2": scoreRealEquipo2,
+                       "primerGol": primerGol}
             fixture[grupo]["partidos"].append(partido)
 
     return fixture    
 
-########## BASE HANDLER ##########
+########## HANDLER ##########
 class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
@@ -195,6 +199,33 @@ class Handler(webapp2.RequestHandler):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         user_id = self.read_secure_cookie('user_id')
         self.user = user_id and dbmodels.User.by_id(int(user_id))
+
+
+########## BASE HANDLER ##########
+class BaseHandler(Handler):
+    def get(self):
+        if not self.user:
+            self.redirect("/signup")
+            return
+
+        self.getLoggeado()
+
+    def post(self):
+        if not self.user:
+            self.redirect("/signup")
+            return
+
+        self.postLoggeado()
+
+    def getLoggeado(self):
+        pass
+
+    def postLoggeado(self):
+        pass
+
+    #def getClaveTokenUsuario(self):
+    #    user_id = str(self.user.key().id()).replace("-", "")
+    #    return user_id + user_id
 
 
 ########## SIGN UP HANDLER ##########
@@ -292,13 +323,13 @@ class PosicionesHandler(Handler):
 
 
 ########## MAIN PAGE HANDLER ##########
-class MainPageHandler(Handler):
-    def get(self):
+class MainPageHandler(BaseHandler):
+    def getLoggeado(self):
         fixture = getFixture(self.user.name)
             
         self.render("index.html", fixture = fixture);
 
-    def post(self):
+    def postLoggeado(self):
         fixture = getFixture()
         resultados = {}
 
@@ -310,8 +341,13 @@ class MainPageHandler(Handler):
                 valueScore1 = self.request.get(keyScore1)
                 valueScore2 = self.request.get(keyScore2)
 
+                keyPrimerGol = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_primer_gol"
+                logging.error("Valor del radio button: %s" % self.request.get(keyPrimerGol))
+                valuePrimerGol = self.request.get(keyPrimerGol)
+
                 resultados[keyScore1] = valueScore1
                 resultados[keyScore2] = valueScore2
+                resultados[keyPrimerGol] = valuePrimerGol
 
         saveResultado(self.user.name, json.dumps(resultados))
         self.redirect("/")
