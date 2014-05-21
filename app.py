@@ -7,6 +7,7 @@ application = webapp2.WSGIApplication([
     ('/signup', handlers.SignUpHandler),
     ('/reglas', handlers.ReglasHandler),
     ('/posiciones', handlers.PosicionesHandler),
+    ('/resultados', handlers.ResultadosHandler),
     ('/', handlers.MainPageHandler),
     ],
     debug = True)

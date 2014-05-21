@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block body_content %}
-
+{% if score %}
+Puntos: {{score}} <br/>
+{% endif %}
 <form method="post">
     {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="ronda">

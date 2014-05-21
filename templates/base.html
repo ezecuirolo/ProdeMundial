@@ -10,8 +10,9 @@
 
         <div class="controles">
             <a href="/reglas">reglas</a>
-            <a href="/posiciones">posiciones</a>
             {% if user %}
+            <a href="/posiciones">posiciones</a>
+            <a href="/resultados">resultados</a>
             <span>{{user.name}} (<a href="/logout">logout</a>)</span>
             {% else %}
             <a href="/login">login</a>

@@ -58,6 +58,7 @@ EQUIPOS={
         {"code": "ALG", "key": "alg", "title": "Argelia"},
         {"code": "KOR", "key": "kor", "title": "Corea del sur"}]}]
 }
+USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
 def getGrupoDeEquipo(codigo_equipo):
     for grupo in EQUIPOS["teams"]:
@@ -163,6 +164,40 @@ def getFixture(username = None):
             fixture[grupo]["partidos"].append(partido)
 
     return fixture    
+
+
+def getScore(user):
+    user = str(user)
+
+    # traigo fixture de este user
+    fixtureUser = getFixture(user)
+
+    # traigo resultados posta
+    fixtureResultados = getFixture(USUARIO_ESPECIAL_RESULTADOS)
+    scoreTotal = 0
+
+    for key, value in fixtureUser.iteritems():
+        for partidoUser, partidoReal in zip(value['partidos'], fixtureResultados[key]['partidos']):
+            if partidoUser['scoreEquipo1'] != '' and partidoUser['scoreEquipo2'] != '' and partidoReal['scoreEquipo1'] != '' and partidoReal['scoreEquipo2'] != '':
+                # 30 puntos por acertar si ganó, empató o perdió
+                restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
+                restaReal = int(partidoReal['scoreEquipo1']) - int(partidoReal['scoreEquipo2'])
+                
+                logging.error("%s vs %s (%s vs %s), RU = %s y RR = %s" % (partidoUser['equipo1'], partidoUser['equipo2'], partidoReal['equipo1'], partidoReal['equipo2'], restaUser, restaReal))
+
+                if (restaUser < 0 and restaReal < 0) or (restaUser > 0 and restaReal > 0) or (restaUser == restaReal):
+                    scoreTotal += 30
+
+                # 15 puntos por acertar score
+                if partidoUser['scoreEquipo1'] == partidoReal['scoreEquipo1'] and partidoUser['scoreEquipo2'] == partidoReal['scoreEquipo2']:
+                    scoreTotal += 15
+
+            # 10 puntos por primer gol
+            if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
+                logging.error('SUMA POR PRIMER GOL: ' + partidoReal['primerGol'])
+                scoreTotal += 10
+
+    return scoreTotal
 
 ########## HANDLER ##########
 class Handler(webapp2.RequestHandler):
@@ -326,8 +361,10 @@ class PosicionesHandler(Handler):
 class MainPageHandler(BaseHandler):
     def getLoggeado(self):
         fixture = getFixture(self.user.name)
+
+        score = getScore(self.user.name)
             
-        self.render("index.html", fixture = fixture);
+        self.render("index.html", fixture = fixture, score = score);
 
     def postLoggeado(self):
         fixture = getFixture()
@@ -351,3 +388,33 @@ class MainPageHandler(BaseHandler):
 
         saveResultado(self.user.name, json.dumps(resultados))
         self.redirect("/")
+
+########## RESULTADOS HANDLER ##########
+class ResultadosHandler(BaseHandler):
+    def getLoggeado(self):
+        fixture = getFixture(USUARIO_ESPECIAL_RESULTADOS)
+            
+        self.render("index.html", fixture = fixture);
+
+    def postLoggeado(self):
+        fixture = getFixture()
+        resultados = {}
+
+        for grupo, datos_grupo in fixture.iteritems():
+            # logging.error(grupo)
+            for partido in datos_grupo["partidos"]:
+                keyScore1 = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score1"
+                keyScore2 = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score2"
+                valueScore1 = self.request.get(keyScore1)
+                valueScore2 = self.request.get(keyScore2)
+
+                keyPrimerGol = partido["equipo1"] + "_vs_" + partido["equipo2"] + "_primer_gol"
+                logging.error("Valor del radio button: %s" % self.request.get(keyPrimerGol))
+                valuePrimerGol = self.request.get(keyPrimerGol)
+
+                resultados[keyScore1] = valueScore1
+                resultados[keyScore2] = valueScore2
+                resultados[keyPrimerGol] = valuePrimerGol
+
+        saveResultado(USUARIO_ESPECIAL_RESULTADOS, json.dumps(resultados))
+        self.redirect("/resultados")
