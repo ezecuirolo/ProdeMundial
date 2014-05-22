@@ -7,6 +7,12 @@ threadsafe: true
 handlers:
 - url: /stylesheets
   static_dir: static/stylesheets
+- url: /data/(.*\.json)
+  mime_type: application/json
+  static_files: static/data/\1
+  upload: static/data/(.*\.json)
+  application_readable: true
+  expiration: "1h"
 - url: /.*
   script: app.application
 
