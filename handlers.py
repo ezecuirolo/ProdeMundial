@@ -75,25 +75,26 @@ def getNombreEquipo(codigo_equipo):
                 return equipo["title"]
 
 
-def getResultado(user, update = False):
-    key = 'resultado_' + user
+def getResultado(user, ronda, update = False):
+    key = 'resultado_' + ronda + "_" + user
     resultado = memcache.get(key)
 
     if resultado is None or update:
-        resultado = dbmodels.Resultado.by_user(user).get()
-        if resultado:
+        resultado = dbmodels.Resultado.by_user(user, ronda)
+        if len(resultado) > 0:
+            resultado = resultado[0]
             memcache.set(key, resultado)
 
     return resultado
 
 
-def saveResultado(username, resultados):
-    key = 'resultado_' + username
-    resultado = getResultado(username)
+def saveResultado(username, ronda, resultados):
+    key = 'resultado_' + ronda + "_" + username
+    resultado = getResultado(username, ronda)
     if resultado:
         resultado.resultados = resultados
     else:
-        resultado = dbmodels.Resultado(user = username, resultados = resultados)
+        resultado = dbmodels.Resultado(user = username, ronda = ronda, resultados = resultados)
 
     resultado.put()
     memcache.set(key, resultado)
@@ -102,7 +103,7 @@ def saveResultado(username, resultados):
 def getFixture(ronda, username = None):
     resultados = None
     if username:
-        resultado = getResultado(username)
+        resultado = getResultado(username, ronda)
         if resultado:
             resultados = json.loads(resultado.resultados)
 
@@ -125,6 +126,8 @@ def getFixture(ronda, username = None):
                 keyPrimerGol = ronda + "_" + equipo1 + "_vs_" + equipo2 + "_primer_gol"
                 primerGol = resultados[keyPrimerGol]
 
+                # logging.error("%s vs %s salieron %s a %s" %(equipo1, equipo2, scoreEquipo1, scoreEquipo2))
+
                 partido['scoreEquipo1'] = scoreEquipo1
                 partido['scoreEquipo2'] = scoreEquipo2
                 partido['primerGol'] = primerGol
@@ -142,23 +145,25 @@ def getScore(user):
         # traigo resultados posta
         fixtureResultados = getFixture(ronda, USUARIO_ESPECIAL_RESULTADOS)
 
-        for key, value in fixtureUser.iteritems():
-            for partidoUser, partidoReal in zip(value['partidos'], fixtureResultados[key]['partidos']):
-                if partidoUser['scoreEquipo1'] != '' and partidoUser['scoreEquipo2'] != '' and partidoReal['scoreEquipo1'] != '' and partidoReal['scoreEquipo2'] != '':
-                    # 30 puntos por acertar si ganó, empató o perdió
-                    restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
-                    restaReal = int(partidoReal['scoreEquipo1']) - int(partidoReal['scoreEquipo2'])
-                    
-                    if (restaUser < 0 and restaReal < 0) or (restaUser > 0 and restaReal > 0) or (restaUser == restaReal):
-                        scoreTotal += 30
+        if fixtureUser != {} and fixtureResultados != {}:
 
-                    # 15 puntos por acertar score
-                    if partidoUser['scoreEquipo1'] == partidoReal['scoreEquipo1'] and partidoUser['scoreEquipo2'] == partidoReal['scoreEquipo2']:
-                        scoreTotal += 15
+            for key, value in fixtureResultados.iteritems():
+                for partidoUser, partidoReal in zip(value['partidos'], fixtureUser[key]['partidos']):
+                    if partidoUser['scoreEquipo1'] != '' and partidoUser['scoreEquipo2'] != '' and partidoReal['scoreEquipo1'] != '' and partidoReal['scoreEquipo2'] != '':
+                        # 30 puntos por acertar si ganó, empató o perdió
+                        restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
+                        restaReal = int(partidoReal['scoreEquipo1']) - int(partidoReal['scoreEquipo2'])
+                        
+                        if (restaUser < 0 and restaReal < 0) or (restaUser > 0 and restaReal > 0) or (restaUser == restaReal):
+                            scoreTotal += 30
 
-                # 10 puntos por primer gol
-                if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
-                    scoreTotal += 10
+                        # 15 puntos por acertar score
+                        if partidoUser['scoreEquipo1'] == partidoReal['scoreEquipo1'] and partidoUser['scoreEquipo2'] == partidoReal['scoreEquipo2']:
+                            scoreTotal += 15
+
+                    # 10 puntos por primer gol
+                    if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
+                        scoreTotal += 10
 
     return scoreTotal
 
@@ -353,7 +358,7 @@ class MainPageHandler(BaseHandler):
                 resultados[keyScore2] = valueScore2
                 resultados[keyPrimerGol] = valuePrimerGol
 
-        saveResultado(self.user.name, json.dumps(resultados))
+        saveResultado(self.user.name, ronda, json.dumps(resultados))
         self.redirect("/")
 
 ########## RESULTADOS HANDLER ##########
@@ -385,5 +390,5 @@ class ResultadosHandler(BaseHandler):
                 resultados[keyScore2] = valueScore2
                 resultados[keyPrimerGol] = valuePrimerGol
 
-        saveResultado(USUARIO_ESPECIAL_RESULTADOS, json.dumps(resultados))
+        saveResultado(USUARIO_ESPECIAL_RESULTADOS, ronda, json.dumps(resultados))
         self.redirect("/resultados")

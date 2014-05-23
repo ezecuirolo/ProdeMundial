@@ -1,16 +1,20 @@
 from google.appengine.ext import db
 import utils
+import logging
 
 class Resultado(db.Model):
     user = db.StringProperty(required = True)
+    ronda = db.StringProperty(required = True)
     resultados = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
 
     @classmethod
-    def by_user(cls, user):
+    def by_user(cls, user, ronda = None):
         q = cls.all().filter('user =', user)
+        if ronda:
+            q.filter('ronda =', ronda)
         q.order("-created")
-        return q
+        return list(q)
 
     @classmethod
     def by_id(cls, resultado_id):
