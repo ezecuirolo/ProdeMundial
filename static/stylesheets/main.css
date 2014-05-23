@@ -95,6 +95,10 @@ input[type=submit] {
     font-size: 12px;
 }
 
+.ronda {
+    margin-top: 20px;
+}
+
 .ronda + .ronda{
     margin-top: 20px;
 }
@@ -137,18 +141,26 @@ input[type=submit] {
 }
 
 
-.partidos table {
+.ronda table {
     width: 100%;
 }
 
-.partidos td {
+.partido td {
     padding: 5px 5px;
     border: 1px solid #333;
 }
 
-.partidos table {
+.ronda table {
     border-collapse: separate;
     border-spacing: 5px 10px;
+}
+
+.ronda select {
+    width: 100%;
+}
+
+.ronda option {
+    direction: rtl;
 }
 
 .partidos tr:nth-child(even) {
@@ -213,5 +225,6 @@ input[type=submit] {
 }
 
 .selector-rondas a {
-    margin: 0 10px;
+    margin: 0 5px;
 }
+
