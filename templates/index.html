@@ -47,8 +47,14 @@
 <div id="countdown"></div>
 -->
 {% if score %}
+<div class="score">
 Puntos: {{score}} <br/>
+</div>
 {% endif %}
+
+<div class="instrucciones">
+    Poner algunas instrucciones acá.
+</div>
 
 <div class="selector-rondas">
     {% for r in rondas %}
