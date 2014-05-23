@@ -15,65 +15,39 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
                                autoescape = True)
 
 
-EQUIPOS={
-    "teams": [
-    {"group": "A", "teams": [
-        {"code": "BRA", "key": "bra", "title": "Brasil"},
-        {"code": "CRO", "key": "cro", "title": "Croacia"},
-        {"code": "MEX", "key": "mex", "title": u'México'},
-        {"code": "CMR", "key": "cmr", "title": u'Camerún'}]},
-    {"group": "B", "teams": [
-        {"code": "ESP", "key": "esp", "title": u'España'},
-        {"code": "NED", "key": "ned", "title": "Holanda"},
-        {"code": "CHI", "key": "chi", "title": "Chile"},
-        {"code": "AUS", "key": "aus", "title": "Australia"}]},
-    {"group": "C", "teams": [
-        {"code": "COL", "key": "col", "title": "Colombia"},
-        {"code": "GRE", "key": "gre", "title": "Grecia"},
-        {"code": "CIV", "key": "civ", "title": "Costa de Marfil"},
-        {"code": "JPN", "key": "jpn", "title": u'Japón'}]},
-    {"group": "D", "teams": [
-        {"code": "URU", "key": "uru", "title": "Uruguay"},
-        {"code": "CRC", "key": "crc", "title": "Costa Rica"},
-        {"code": "ENG", "key": "eng", "title": "Inglaterra"},
-        {"code": "ITA", "key": "ita", "title": "Italia"}]},
-    {"group": "E", "teams": [
-        {"code": "SUI", "key": "sui", "title": "Suiza"},
-        {"code": "ECU", "key": "ecu", "title": "Ecuador"},
-        {"code": "FRA", "key": "fra", "title": "Francia"},
-        {"code": "HON", "key": "hon", "title": "Honduras"}]},
-    {"group": "F", "teams": [
-        {"code": "ARG", "key": "arg", "title": "ARGENTINA"},
-        {"code": "BIH", "key": "bih", "title": "Bosnia"},
-        {"code": "IRN", "key": "irn", "title": u'Irán'},
-        {"code": "NGA", "key": "nga", "title": "Nigeria"}]},
-    {"group": "G", "teams": [
-        {"code": "GER", "key": "ger", "title": "Alemania"},
-        {"code": "POR", "key": "por", "title": "Portugal"},
-        {"code": "GHA", "key": "gha", "title": "Ghana"},
-        {"code": "USA", "key": "usa", "title": "EE.UU."}]},
-    {"group": "H", "teams": [
-        {"code": "RUS", "key": "rus", "title": "Rusia"},
-        {"code": "BEL", "key": "bel", "title": u'Bélgica'},
-        {"code": "ALG", "key": "alg", "title": "Argelia"},
-        {"code": "KOR", "key": "kor", "title": "Corea del sur"}]}]
-}
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
 RONDAS = ["Primera", "Octavos", "Cuartos", "Semifinal", "TercerPuesto", "Final"]
 
-def getGrupoDeEquipo(codigo_equipo):
-    for grupo in EQUIPOS["teams"]:
-        for equipo in grupo["teams"]:
-            if equipo["code"] == codigo_equipo:
-                return grupo["group"]
 
-def getNombreEquipo(codigo_equipo):
-    for grupo in EQUIPOS["teams"]:
-        for equipo in grupo["teams"]:
-            if equipo["code"] == codigo_equipo:
-                return equipo["title"]
+def getEquipos(update = False):
+    key = 'equipos'
+    equipos = memcache.get(key)
 
+    if equipos is None or update:
+        try:
+            equiposFile = open(os.path.dirname(__file__) + '/static/data/Equipos.json')
+            equipos = json.load(equiposFile)
+            memcache.set(key, equipos)
+        except:
+            return []
+
+    return equipos
+
+def getJugadores(update = None):
+    key = 'jugadores'
+    jugadores = memcache.get(key)
+    if jugadores is None or update:
+        try:
+            jugadoresFile = open(os.path.dirname(__file__) + '/static/data/Jugadores.json')
+            jugadores = json.load(jugadoresFile)
+            logging.error("Pude cargar el archivo")
+            memcache.set(key, jugadores)
+        except:
+            return []
+
+    return jugadores
+    
 
 def getResultado(user, ronda, update = False):
     key = 'resultado_' + ronda + "_" + user
@@ -335,8 +309,22 @@ class MainPageHandler(BaseHandler):
         fixture = getFixture(ronda, self.user.name)
 
         score = getScore(self.user.name)
+
+        mostrarExtras = False
+        if ronda == 'Primera':
+            mostrarExtras = True
+
+        params = {"fixture": fixture,
+                  "score": score,
+                  "ronda": ronda,
+                  "rondas": RONDAS,
+                  "whoami": "",
+                  "mostrarExtras": mostrarExtras,
+                  "equipos": getEquipos(),
+                  "jugadores": getJugadores()}
             
-        self.render("index.html", fixture = fixture, score = score, ronda = ronda, rondas = RONDAS, whoami="");
+        #self.render("index.html", fixture = fixture, score = score, ronda = ronda, rondas = RONDAS, whoami="", mostrarExtras = mostrarExtras);
+        self.render("index.html", **params)
 
     def postLoggeado(self):
         ronda = self.request.get('ronda')
@@ -368,8 +356,21 @@ class ResultadosHandler(BaseHandler):
         if not ronda:
             ronda = RONDAS[0]
         fixture = getFixture(ronda, USUARIO_ESPECIAL_RESULTADOS)
+
+        mostrarExtras = False
+        if ronda == 'Primera':
+            mostrarExtras = True
+
+        params = {"fixture": fixture,
+                  "ronda": ronda,
+                  "rondas": RONDAS,
+                  "whoami": "resultados",
+                  "mostrarExtras": mostrarExtras,
+                  "equipos": getEquipos(),
+                  "jugadores": getJugadores()}
             
-        self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados");
+        #self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados", mostrarExtras = mostrarExtras);
+        self.render("index.html", **params)
 
     def postLoggeado(self):
         ronda = self.request.get('ronda')

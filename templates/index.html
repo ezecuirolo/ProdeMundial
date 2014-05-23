@@ -43,8 +43,9 @@
     }
 
 </script>
+<!--
 <div id="countdown"></div>
-
+-->
 {% if score %}
 Puntos: {{score}} <br/>
 {% endif %}
@@ -56,6 +57,88 @@ Puntos: {{score}} <br/>
 </div>
 
 <form method="post">
+    {% if mostrarExtras %}
+    <div class="ronda">
+        <div class="non-grupo">
+            <div class="titulo">Extras</div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Campeón</td>
+                            <td>
+                                <select>
+                                    {% for equipo in equipos %}
+                                    <option value="campeon_{{equipo.code}}">{{equipo.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Segundo</td>
+                            <td>
+                                <select>
+                                    {% for equipo in equipos %}
+                                    <option value="segundo_{{equipo.code}}">{{equipo.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tercero</td>
+                            <td>
+                                <select>
+                                    {% for equipo in equipos %}
+                                    <option value="tercero_{{equipo.code}}">{{equipo.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cuarto</td>
+                            <td>
+                                <select>
+                                    {% for equipo in equipos %}
+                                    <option value="cuarto_{{equipo.code}}">{{equipo.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Goleador 1</td>
+                            <td>
+                                <select>
+                                    {% for jugador in jugadores %}
+                                    <option value="goleador1_{{jugador.key}}">{{jugador.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Goleador 2</td>
+                            <td>
+                                <select>
+                                    {% for jugador in jugadores %}
+                                    <option value="goleador2_{{jugador.key}}">{{jugador.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Posición Argentina</td>
+                            <td>
+                                <select>
+                                    {% for pos in range(1, 33) %}
+                                    <option value="pos_arg_{{pos}}">{{pos}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="ronda">
         <div class="{{datos_grupo.tipo}}">
