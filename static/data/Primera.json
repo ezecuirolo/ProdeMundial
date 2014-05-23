@@ -1,0 +1,434 @@
+{
+    "A": {
+        "partidos": [
+            {
+                "equipo1": "Brasil", 
+                "equipo2": "Croacia", 
+                "fecha": "2014/06/12", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "M\u00e9xico", 
+                "equipo2": "Camer\u00fan", 
+                "fecha": "2014/06/13", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Brasil", 
+                "equipo2": "M\u00e9xico", 
+                "fecha": "2014/06/17", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Camer\u00fan", 
+                "equipo2": "Croacia", 
+                "fecha": "2014/06/18", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Camer\u00fan", 
+                "equipo2": "Brasil", 
+                "fecha": "2014/06/23", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Croacia", 
+                "equipo2": "M\u00e9xico", 
+                "fecha": "2014/06/23", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "B": {
+        "partidos": [
+            {
+                "equipo1": "Espa\u00f1a", 
+                "equipo2": "Holanda", 
+                "fecha": "2014/06/13", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Chile", 
+                "equipo2": "Australia", 
+                "fecha": "2014/06/13", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Espa\u00f1a", 
+                "equipo2": "Chile", 
+                "fecha": "2014/06/18", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Australia", 
+                "equipo2": "Holanda", 
+                "fecha": "2014/06/18", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Australia", 
+                "equipo2": "Espa\u00f1a", 
+                "fecha": "2014/06/23", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Holanda", 
+                "equipo2": "Chile", 
+                "fecha": "2014/06/23", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "C": {
+        "partidos": [
+            {
+                "equipo1": "Colombia", 
+                "equipo2": "Grecia", 
+                "fecha": "2014/06/14", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Costa de Marfil", 
+                "equipo2": "Jap\u00f3n", 
+                "fecha": "2014/06/14", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Colombia", 
+                "equipo2": "Costa de Marfil", 
+                "fecha": "2014/06/19", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Jap\u00f3n", 
+                "equipo2": "Grecia", 
+                "fecha": "2014/06/19", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Jap\u00f3n", 
+                "equipo2": "Colombia", 
+                "fecha": "2014/06/24", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Costa de Marfil", 
+                "equipo2": "Grecia", 
+                "fecha": "2014/06/24", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "D": {
+        "partidos": [
+            {
+                "equipo1": "Uruguay", 
+                "equipo2": "Costa Rica", 
+                "fecha": "2014/06/14", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Inglaterra", 
+                "equipo2": "Italia", 
+                "fecha": "2014/06/14", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Uruguay", 
+                "equipo2": "Inglaterra", 
+                "fecha": "2014/06/19", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Italia", 
+                "equipo2": "Costa Rica", 
+                "fecha": "2014/06/20", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Italia", 
+                "equipo2": "Uruguay", 
+                "fecha": "2014/06/24", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Costa Rica", 
+                "equipo2": "Inglaterra", 
+                "fecha": "2014/06/24", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "E": {
+        "partidos": [
+            {
+                "equipo1": "Suiza", 
+                "equipo2": "Ecuador", 
+                "fecha": "2014/06/15", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Francia", 
+                "equipo2": "Honduras", 
+                "fecha": "2014/06/15", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Suiza", 
+                "equipo2": "Francia", 
+                "fecha": "2014/06/20", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Honduras", 
+                "equipo2": "Ecuador", 
+                "fecha": "2014/06/20", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Honduras", 
+                "equipo2": "Suiza", 
+                "fecha": "2014/06/25", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Ecuador", 
+                "equipo2": "Francia", 
+                "fecha": "2014/06/25", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "F": {
+        "partidos": [
+            {
+                "equipo1": "ARGENTINA", 
+                "equipo2": "Bosnia", 
+                "fecha": "2014/06/15", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Ir\u00e1n", 
+                "equipo2": "Nigeria", 
+                "fecha": "2014/06/16", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "ARGENTINA", 
+                "equipo2": "Ir\u00e1n", 
+                "fecha": "2014/06/21", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Nigeria", 
+                "equipo2": "Bosnia", 
+                "fecha": "2014/06/21", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Nigeria", 
+                "equipo2": "ARGENTINA", 
+                "fecha": "2014/06/25", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Bosnia", 
+                "equipo2": "Ir\u00e1n", 
+                "fecha": "2014/06/25", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "G": {
+        "partidos": [
+            {
+                "equipo1": "Alemania", 
+                "equipo2": "Portugal", 
+                "fecha": "2014/06/16", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Ghana", 
+                "equipo2": "EE.UU.", 
+                "fecha": "2014/06/16", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Alemania", 
+                "equipo2": "Ghana", 
+                "fecha": "2014/06/21", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "EE.UU.", 
+                "equipo2": "Portugal", 
+                "fecha": "2014/06/22", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "EE.UU.", 
+                "equipo2": "Alemania", 
+                "fecha": "2014/06/26", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Portugal", 
+                "equipo2": "Ghana", 
+                "fecha": "2014/06/26", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }, 
+    "H": {
+        "partidos": [
+            {
+                "equipo1": "B\u00e9lgica", 
+                "equipo2": "Argelia", 
+                "fecha": "2014/06/17", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Rusia", 
+                "equipo2": "Corea del sur", 
+                "fecha": "2014/06/17", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "B\u00e9lgica", 
+                "equipo2": "Rusia", 
+                "fecha": "2014/06/22", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Corea del sur", 
+                "equipo2": "Argelia", 
+                "fecha": "2014/06/22", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Corea del sur", 
+                "equipo2": "B\u00e9lgica", 
+                "fecha": "2014/06/26", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Argelia", 
+                "equipo2": "Rusia", 
+                "fecha": "2014/06/26", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }
+        ], 
+        "permite-modificar": true, 
+        "tipo": "grupo"
+    }
+}

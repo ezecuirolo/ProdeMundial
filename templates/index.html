@@ -2,7 +2,7 @@
 
 {% block body_content %}<script>
 
-    CountDownTimer('Wed May 22 2014 14:06:16 GMT-0300 ', 'countdown');
+    CountDownTimer('Wed May 25 2014 14:06:16 GMT-0300 ', 'countdown');
 
     function CountDownTimer(dt, id)
     {
@@ -45,32 +45,36 @@
 </script>
 <div id="countdown"></div>
 
-
-
-
 {% if score %}
 Puntos: {{score}} <br/>
 {% endif %}
+
+<div class="selector-rondas">
+    {% for r in rondas %}
+    <a href="/{{whoami}}?ronda={{r}}">{{r}}</a> 
+    {% endfor %}
+</div>
+
 <form method="post">
     {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="ronda">
         <div class="{{datos_grupo.tipo}}">
-            <div class="titulo">GRUPO {{grupo}}</div>
+            <div class="titulo">{{grupo}}</div>
             <div class="partidos">
                 <table>
                     <tbody>
                         {% for partido in datos_grupo.partidos %}
                         <tr>
                             <td class="equipo">{{partido.equipo1}}</td>
-                            <td class="resultado radiooption"><input type="radio" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
+                            <td class="resultado radiooption"><input type="radio" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
                                 {% if partido.primerGol == partido.equipo1 %}
                                 checked
                                 {% endif %}
                                 /></td>
-                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"
+                            <td class="resultado"><input type="text" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"
                                 /></td>
-                            <td class="resultado"><input type="text" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
-                            <td class="resultado radiooption"><input type="radio" name="{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
+                            <td class="resultado"><input type="text" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
+                            <td class="resultado radiooption"><input type="radio" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
                                 {% if partido.primerGol == partido.equipo2 %}
                                 checked
                                 {% endif %}
@@ -84,6 +88,7 @@ Puntos: {{score}} <br/>
         </div>
     </div>
     {% endfor %}
+    <input type="hidden" name="ronda" value="{{ronda}}"/>
     <input type="submit"/>
 </form>
 

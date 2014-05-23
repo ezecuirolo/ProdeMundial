@@ -3,7 +3,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
 
-    width: 600px;
+    width: 430px;
     margin: 0 auto;
     padding: 10px;
     color: #333;
@@ -117,7 +117,7 @@ input[type=submit] {
     box-align:center;
 }
 
-.grupo {
+.grupo, .non-grupo {
     display: inline-block;
     border: 1px solid black;
     padding: 10px;
@@ -126,7 +126,7 @@ input[type=submit] {
     min-width: 400px;
 }
 
-.grupo .titulo {
+.grupo .titulo,.non-grupo .titulo {
     display: block;
     color: #222;
     font-size: 120%;
@@ -210,4 +210,8 @@ input[type=submit] {
 
 .posiciones td {
     padding: 9px 8px 0px 8px;
+}
+
+.selector-rondas a {
+    margin: 0 10px;
 }
