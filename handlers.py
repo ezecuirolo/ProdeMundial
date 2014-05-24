@@ -414,9 +414,9 @@ class MainPageHandler(BaseHandler):
 
         saveResultado(self.user.name, ronda, json.dumps(resultados))
         # guardo score
-        # score = getScore(self.user.name)
-        # self.user.score = score['scoreTotal']
-        # self.user.put()
+        score = getScore(self.user.name)
+        self.user.puntaje = score['scoreTotal']
+        self.user.put()
 
         self.redirect("/")
 

@@ -13,9 +13,11 @@
             </tr>
         </thead>
         <tbody>
+            {% set pos = 0 %}
             {% for usuario in usuarios %}
+            {% set pos = pos + 1 %}
             <tr>
-                <td>TO DO</td>
+                <td>{{ pos }}</td>
                 <td>{{usuario.name}}</td>
                 <td>{{usuario.puntaje}}</td>
             </tr>
