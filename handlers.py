@@ -101,7 +101,6 @@ def getFixture(ronda, username = None):
                 keyPrimerGol = ronda + "_" + equipo1 + "_vs_" + equipo2 + "_primer_gol"
                 primerGol = resultados[keyPrimerGol]
 
-                logging.error("%s vs %s salieron %s a %s" %(equipo1, equipo2, scoreEquipo1, scoreEquipo2))
 
                 partido['scoreEquipo1'] = scoreEquipo1
                 partido['scoreEquipo2'] = scoreEquipo2
@@ -188,6 +187,13 @@ def getScore(user):
 
     score["scoreTotal"] = scoreTotal
     return score
+
+def updateScores():
+    users = dbmodels.User.todos()
+    for user in users:
+        score = getScore(user.name)
+        user.puntaje = score['scoreTotal']
+        user.put()
 
 ########## HANDLER ##########
 class Handler(webapp2.RequestHandler):
@@ -483,4 +489,5 @@ class ResultadosHandler(BaseHandler):
                 resultados[keyPrimerGol] = valuePrimerGol
 
         saveResultado(USUARIO_ESPECIAL_RESULTADOS, ronda, json.dumps(resultados))
+        updateScores()
         self.redirect("/resultados")

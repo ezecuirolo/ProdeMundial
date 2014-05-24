@@ -29,6 +29,11 @@ class User(db.Model):
     created = db.DateTimeProperty(auto_now_add = True)
 
     @classmethod
+    def todos(cls):
+        u = cls.all()
+        return u
+
+    @classmethod
     def by_id(cls, user_id):
         return cls.get_by_id(user_id)
 
