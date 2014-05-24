@@ -72,9 +72,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Campeón</td>
                             <td>
-                                <select>
+                                <select name="campeon">
                                     {% for equipo in equipos %}
-                                    <option value="campeon_{{equipo.code}}">{{equipo.title}}</option>
+                                    <option value="{{equipo.code}}"
+                                    {% if extras.campeon == equipo.code %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{equipo.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -85,9 +89,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Segundo</td>
                             <td>
-                                <select>
+                                <select name="segundo">
                                     {% for equipo in equipos %}
-                                    <option value="segundo_{{equipo.code}}">{{equipo.title}}</option>
+                                    <option value="{{equipo.code}}"
+                                    {% if extras.segundo == equipo.code %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{equipo.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -98,9 +106,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Tercero</td>
                             <td>
-                                <select>
+                                <select name="tercero">
                                     {% for equipo in equipos %}
-                                    <option value="tercero_{{equipo.code}}">{{equipo.title}}</option>
+                                    <option value="{{equipo.code}}"
+                                    {% if extras.tercero == equipo.code %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{equipo.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -111,9 +123,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Cuarto</td>
                             <td>
-                                <select>
+                                <select name="cuarto">
                                     {% for equipo in equipos %}
-                                    <option value="cuarto_{{equipo.code}}">{{equipo.title}}</option>
+                                    <option value="{{equipo.code}}"
+                                    {% if extras.cuarto == equipo.code %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{equipo.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -124,9 +140,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Goleador 1</td>
                             <td>
-                                <select>
+                                <select name="goleador1">
                                     {% for jugador in jugadores %}
-                                    <option value="goleador1_{{jugador.key}}">{{jugador.title}}</option>
+                                    <option value="{{jugador.key}}"
+                                    {% if extras.goleador1 == jugador.key %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{jugador.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -137,9 +157,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Goleador 2</td>
                             <td>
-                                <select>
+                                <select name="goleador2">
                                     {% for jugador in jugadores %}
-                                    <option value="goleador2_{{jugador.key}}">{{jugador.title}}</option>
+                                    <option value="{{jugador.key}}"
+                                    {% if extras.goleador2 == jugador.key %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{jugador.title}}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -150,9 +174,13 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Posición Argentina</td>
                             <td>
-                                <select>
+                                <select name="posicion_argentina">
                                     {% for pos in range(1, 33) %}
-                                    <option value="pos_arg_{{pos}}">{{pos}}</option>
+                                    <option value="{{pos}}"
+                                    {% if extras.posicion_argentina == pos %}
+                                    selected="selected"
+                                    {% endif %}
+                                    >{{pos}}</option>
                                     {% endfor %}
                                 </select>
                             </td>

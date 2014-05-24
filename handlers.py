@@ -86,7 +86,7 @@ def getFixture(ronda, username = None):
     except:
         return {}
 
-    if resultados:
+
         # completo con los datos llenados previamente
         for key,value in fixture.iteritems():
             for partido in value['partidos']:
@@ -320,8 +320,13 @@ class MainPageHandler(BaseHandler):
         score = getScore(self.user.name)
 
         mostrarExtras = False
+        extras = {}
+
         if ronda == 'Primera':
             mostrarExtras = True
+            resultado = getResultado(self.user.name, ronda)
+            if resultado:
+                extras = json.loads(resultado.resultados)
 
         params = {"fixture": fixture,
                   "score": score,
@@ -329,6 +334,7 @@ class MainPageHandler(BaseHandler):
                   "rondas": RONDAS,
                   "whoami": "",
                   "mostrarExtras": mostrarExtras,
+                  "extras": extras,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}
             
@@ -340,6 +346,14 @@ class MainPageHandler(BaseHandler):
         fixture = getFixture(ronda)
         resultados = {}
 
+        if ronda == 'Primera':
+            resultados['campeon'] = self.request.get('campeon')
+            resultados['segundo'] = self.request.get('segundo')
+            resultados['tercero'] = self.request.get('tercero')
+            resultados['cuarto'] = self.request.get('cuarto')
+            resultados['goleador1'] = self.request.get('goleador1')
+            resultados['goleador2'] = self.request.get('goleador2')
+            resultados['posicion_argentina'] = int(self.request.get('posicion_argentina'))
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
@@ -367,14 +381,21 @@ class ResultadosHandler(BaseHandler):
         fixture = getFixture(ronda, USUARIO_ESPECIAL_RESULTADOS)
 
         mostrarExtras = False
+        extras = {}
+
         if ronda == 'Primera':
             mostrarExtras = True
+            resultado = getResultado(USUARIO_ESPECIAL_RESULTADOS, ronda)
+            if resultado:
+                extras = json.loads(resultado.resultados)
+
 
         params = {"fixture": fixture,
                   "ronda": ronda,
                   "rondas": RONDAS,
                   "whoami": "resultados",
                   "mostrarExtras": mostrarExtras,
+                  "extras": extras,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}
             
@@ -385,6 +406,15 @@ class ResultadosHandler(BaseHandler):
         ronda = self.request.get('ronda')
         fixture = getFixture(ronda)
         resultados = {}
+
+        if ronda == 'Primera':
+            resultados['campeon'] = self.request.get('campeon')
+            resultados['segundo'] = self.request.get('segundo')
+            resultados['tercero'] = self.request.get('tercero')
+            resultados['cuarto'] = self.request.get('cuarto')
+            resultados['goleador1'] = self.request.get('goleador1')
+            resultados['goleador2'] = self.request.get('goleador2')
+            resultados['posicion_argentina'] = int(self.request.get('posicion_argentina'))
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
