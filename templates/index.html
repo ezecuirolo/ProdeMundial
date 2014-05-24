@@ -73,6 +73,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Campeón</td>
                             <td>
                                 <select name="campeon">
+                                    <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
                                     {% if extras.campeon == equipo.code %}
@@ -90,6 +91,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Segundo</td>
                             <td>
                                 <select name="segundo">
+                                    <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
                                     {% if extras.segundo == equipo.code %}
@@ -107,6 +109,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Tercero</td>
                             <td>
                                 <select name="tercero">
+                                    <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
                                     {% if extras.tercero == equipo.code %}
@@ -124,6 +127,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Cuarto</td>
                             <td>
                                 <select name="cuarto">
+                                    <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
                                     {% if extras.cuarto == equipo.code %}
@@ -141,6 +145,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Goleador 1</td>
                             <td>
                                 <select name="goleador1">
+                                    <option value="ninguno">-</option>
                                     {% for jugador in jugadores %}
                                     <option value="{{jugador.key}}"
                                     {% if extras.goleador1 == jugador.key %}
@@ -158,6 +163,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Goleador 2</td>
                             <td>
                                 <select name="goleador2">
+                                    <option value="ninguno">-</option>
                                     {% for jugador in jugadores %}
                                     <option value="{{jugador.key}}"
                                     {% if extras.goleador2 == jugador.key %}
@@ -175,6 +181,7 @@ Puntos: {{score.scoreTotal}} <br/>
                             <td>Posición Argentina</td>
                             <td>
                                 <select name="posicion_argentina">
+                                    <option value="ninguno">-</option>
                                     {% for pos in range(1, 33) %}
                                     <option value="{{pos}}"
                                     {% if extras.posicion_argentina == pos %}
