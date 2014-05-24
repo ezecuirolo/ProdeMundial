@@ -228,7 +228,7 @@ input[type=submit] {
     margin: 0 5px;
 }
 
-.partidos td.score-partido {
+td.score-partido {
     background-color: #DCFFDC;
     border: none;
     font-size: 80%;

@@ -113,6 +113,43 @@ def getScore(user):
     score = {}
 
     scoreTotal = 0
+
+    # extras
+    resultadoUser = getResultado(user, 'Primera')
+    resultadoReal = getResultado(USUARIO_ESPECIAL_RESULTADOS, 'Primera')
+
+    if resultadoUser and resultadoReal:
+        resultadoUser = json.loads(resultadoUser.resultados)
+        resultadoReal = json.loads(resultadoReal.resultados)
+
+        extras = [{'campo': 'campeon', 'puntos': 100},
+                  {'campo': 'segundo', 'puntos': 80}, 
+                  {'campo': 'tercero', 'puntos': 60}, 
+                  {'campo': 'cuarto', 'puntos': 50}, 
+                  {'campo': 'posicion_argentina', 'puntos': 100}]
+
+        for extra in extras:
+            if resultadoUser[extra['campo']] != 'ninguno' and resultadoUser[extra['campo']] == resultadoReal[extra['campo']]:
+                scoreTotal += extra['puntos']
+                score[extra['campo']] = extra['puntos']
+            else:
+                score[extra['campo']] = 0
+
+        if resultadoUser['goleador1'] != 'ninguno' and resultadoUser['goleador1'] == resultadoReal['goleador1']:
+            scoreTotal += 100
+            score['goleador1'] = 100
+        else:
+            score['goleador1'] = 0
+
+        if resultadoUser['goleador2'] != 'ninguno' and resultadoUser['goleador2'] == resultadoReal['goleador1']:
+            scoreTotal += 70
+            score['goleador2'] = 70
+        else:
+            score['goleador2'] = 0
+            
+
+
+    #rondas
     for ronda in RONDAS:
         # traigo fixture de este user
         fixtureUser = getFixture(ronda, user)
