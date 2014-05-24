@@ -80,6 +80,7 @@ def getFixture(ronda, username = None):
         if resultado:
             resultados = json.loads(resultado.resultados)
 
+    fixture = {}
     try:
         fixtureFile = open(os.path.dirname(__file__) + '/static/data/' + ronda + '.json')
         fixture = json.load(fixtureFile)
@@ -87,6 +88,7 @@ def getFixture(ronda, username = None):
         return {}
 
 
+    if resultados:
         # completo con los datos llenados previamente
         for key,value in fixture.iteritems():
             for partido in value['partidos']:
@@ -99,7 +101,7 @@ def getFixture(ronda, username = None):
                 keyPrimerGol = ronda + "_" + equipo1 + "_vs_" + equipo2 + "_primer_gol"
                 primerGol = resultados[keyPrimerGol]
 
-                # logging.error("%s vs %s salieron %s a %s" %(equipo1, equipo2, scoreEquipo1, scoreEquipo2))
+                logging.error("%s vs %s salieron %s a %s" %(equipo1, equipo2, scoreEquipo1, scoreEquipo2))
 
                 partido['scoreEquipo1'] = scoreEquipo1
                 partido['scoreEquipo2'] = scoreEquipo2
@@ -411,6 +413,11 @@ class MainPageHandler(BaseHandler):
                 resultados[keyPrimerGol] = valuePrimerGol
 
         saveResultado(self.user.name, ronda, json.dumps(resultados))
+        # guardo score
+        # score = getScore(self.user.name)
+        # self.user.score = score['scoreTotal']
+        # self.user.put()
+
         self.redirect("/")
 
 ########## RESULTADOS HANDLER ##########
