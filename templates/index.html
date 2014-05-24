@@ -48,7 +48,7 @@
 -->
 {% if score %}
 <div class="score">
-Puntos: {{score}} <br/>
+Puntos: {{score.scoreTotal}} <br/>
 </div>
 {% endif %}
 
@@ -78,6 +78,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreCampeon}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Segundo</td>
@@ -88,6 +91,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreSegundo}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Tercero</td>
@@ -98,6 +104,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreTercero}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Cuarto</td>
@@ -108,6 +117,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreCuarto}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Goleador 1</td>
@@ -118,6 +130,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreGoleador1}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Goleador 2</td>
@@ -128,6 +143,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scoreGoleador2}}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>Posición Argentina</td>
@@ -138,6 +156,9 @@ Puntos: {{score}} <br/>
                                     {% endfor %}
                                 </select>
                             </td>
+                            {% if score %}
+                            <td class="score-partido">{{score.scorePuestoArgentina}}</td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 </table>
@@ -169,6 +190,9 @@ Puntos: {{score}} <br/>
                                 {% endif %}
                                 /></td>
                             <td class="equipo">{{partido.equipo2}}</td>
+                            {% if score %}
+                            <td class="score-partido">{{score["score_" + ronda + "_" + partido.equipo1 + "_vs_" + partido.equipo2]}}</td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>

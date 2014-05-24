@@ -41,7 +41,6 @@ def getJugadores(update = None):
         try:
             jugadoresFile = open(os.path.dirname(__file__) + '/static/data/Jugadores.json')
             jugadores = json.load(jugadoresFile)
-            logging.error("Pude cargar el archivo")
             memcache.set(key, jugadores)
         except:
             return []
@@ -111,6 +110,8 @@ def getFixture(ronda, username = None):
 def getScore(user):
     user = str(user)
 
+    score = {}
+
     scoreTotal = 0
     for ronda in RONDAS:
         # traigo fixture de este user
@@ -123,23 +124,31 @@ def getScore(user):
 
             for key, value in fixtureResultados.iteritems():
                 for partidoUser, partidoReal in zip(value['partidos'], fixtureUser[key]['partidos']):
+                    scorePartido = 0
                     if partidoUser['scoreEquipo1'] != '' and partidoUser['scoreEquipo2'] != '' and partidoReal['scoreEquipo1'] != '' and partidoReal['scoreEquipo2'] != '':
                         # 30 puntos por acertar si ganó, empató o perdió
                         restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
                         restaReal = int(partidoReal['scoreEquipo1']) - int(partidoReal['scoreEquipo2'])
                         
                         if (restaUser < 0 and restaReal < 0) or (restaUser > 0 and restaReal > 0) or (restaUser == restaReal):
+                            scorePartido += 30
                             scoreTotal += 30
 
                         # 15 puntos por acertar score
                         if partidoUser['scoreEquipo1'] == partidoReal['scoreEquipo1'] and partidoUser['scoreEquipo2'] == partidoReal['scoreEquipo2']:
+                            scorePartido += 15
                             scoreTotal += 15
 
                     # 10 puntos por primer gol
                     if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
+                        scorePartido += 10
                         scoreTotal += 10
 
-    return scoreTotal
+                    keyScore = 'score_' + ronda + "_" + partidoUser['equipo1'] + "_vs_" + partidoUser['equipo2']
+                    score[keyScore] = scorePartido
+
+    score["scoreTotal"] = scoreTotal
+    return score
 
 ########## HANDLER ##########
 class Handler(webapp2.RequestHandler):
