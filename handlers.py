@@ -390,7 +390,11 @@ class MainPageHandler(BaseHandler):
             resultados['cuarto'] = self.request.get('cuarto')
             resultados['goleador1'] = self.request.get('goleador1')
             resultados['goleador2'] = self.request.get('goleador2')
-            resultados['posicion_argentina'] = int(self.request.get('posicion_argentina'))
+            posicion_argentina = self.request.get('posicion_argentina')
+            if posicion_argentina != 'ninguno':
+                resultados['posicion_argentina'] = int(posicion_argentina)
+            else:
+                resultados['posicion_argentina'] = posicion_argentina
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
@@ -451,7 +455,11 @@ class ResultadosHandler(BaseHandler):
             resultados['cuarto'] = self.request.get('cuarto')
             resultados['goleador1'] = self.request.get('goleador1')
             resultados['goleador2'] = self.request.get('goleador2')
-            resultados['posicion_argentina'] = int(self.request.get('posicion_argentina'))
+            posicion_argentina = self.request.get('posicion_argentina')
+            if posicion_argentina != 'ninguno':
+                resultados['posicion_argentina'] = int(posicion_argentina)
+            else:
+                resultados['posicion_argentina'] = posicion_argentina
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
