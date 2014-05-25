@@ -163,7 +163,7 @@ def getScore(user):
             for key, value in fixtureResultados.iteritems():
                 for partidoUser, partidoReal in zip(value['partidos'], fixtureUser[key]['partidos']):
                     scorePartido = 0
-                    if partidoUser['scoreEquipo1'] != '' and partidoUser['scoreEquipo2'] != '' and partidoReal['scoreEquipo1'] != '' and partidoReal['scoreEquipo2'] != '':
+                    if partidoUser['scoreEquipo1'].isdigit() and partidoUser['scoreEquipo2'].isdigit() and partidoReal['scoreEquipo1'].isdigit() and partidoReal['scoreEquipo2'].isdigit():
                         # 30 puntos por acertar si ganó, empató o perdió
                         restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
                         restaReal = int(partidoReal['scoreEquipo1']) - int(partidoReal['scoreEquipo2'])
@@ -410,7 +410,7 @@ class MainPageHandler(BaseHandler):
                 keyScore2 = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score2"
                 valueScore1 = self.request.get(keyScore1)
                 valueScore2 = self.request.get(keyScore2)
-
+                
                 keyPrimerGol = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_primer_gol"
                 valuePrimerGol = self.request.get(keyPrimerGol)
 
