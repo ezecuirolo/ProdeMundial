@@ -8,6 +8,14 @@
 </script>
 
 
+<div class="instrucciones">
+    <p>
+    Completar el resultado de cada partido e indicar quién hace el primer gol en cada uno.
+    Se podrán hacer modificaciones hasta 24 hs antes del primer partido.
+    </p>
+</div>
+
+
 <div class="countdown" id="countdown">
     <div class="titulo" id="titulo_countdown">Tiempo hasta el cierre</div>
     <div class="contenido-countdown">
@@ -36,9 +44,6 @@ Puntos: {{score.scoreTotal}} <br/>
 </div>
 {% endif %}
 
-<div class="instrucciones">
-    Poner algunas instrucciones acá.
-</div>
 
 <div class="selector-rondas">
     {% for r in rondas %}

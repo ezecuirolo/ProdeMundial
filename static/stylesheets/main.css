@@ -289,3 +289,10 @@ td.score-partido {
     color: #FF3333;
 }
 
+.score {
+    font-weight: bold;
+    font-size: 120%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
