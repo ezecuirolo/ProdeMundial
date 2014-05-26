@@ -18,12 +18,12 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 03:49:00 2014 GMT-0000'},
-          {'ronda': "Octavos", 'limite': 'Sun May 26 03:50:00 2014 GMT-0000'},
-          {'ronda': "Cuartos", 'limite': 'Sun May 26 03:55:00 2014 GMT-0000'},
-          {'ronda': "Semifinal", 'limite': 'Mon May 26 03:56:00 2014 GMT-0000'},
-          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 03:57:00 2014 GMT-0000'},
-          {'ronda': "Final", 'limite': 'Sun May 26 03:58:00 2014 GMT-0000'}]
+RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 13:49:00 2014 GMT-0000'},
+          {'ronda': "Octavos", 'limite': 'Sun May 26 23:50:00 2014 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Sun May 26 23:55:00 2014 GMT-0000'},
+          {'ronda': "Semifinal", 'limite': 'Mon May 26 23:56:00 2014 GMT-0000'},
+          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 23:57:00 2014 GMT-0000'},
+          {'ronda': "Final", 'limite': 'Sun May 26 23:58:00 2014 GMT-0000'}]
               
 
 
@@ -568,6 +568,12 @@ class ResultadosPorUsuarioHandler(BaseHandler):
         if usuario and usuario != 'ninguno':
             fixture = getFixture(ronda['ronda'], usuario)
             current_user = usuario
+
+            for r in RONDAS:
+                if r['ronda'] == ronda['ronda']:
+                    limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
+                    if limite > now:
+                        fixture = {}
 
         mostrarExtras = False
         extras = {}
