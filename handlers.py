@@ -407,7 +407,6 @@ class MainPageHandler(BaseHandler):
                   "score": score,
                   "ronda": ronda,
                   "rondas": RONDAS,
-                  "whoami": "",
                   "mostrarExtras": mostrarExtras,
                   "extras": extras,
                   "permite_modificar": permite_modificar,
@@ -502,7 +501,6 @@ class ResultadosHandler(BaseHandler):
         params = {"fixture": fixture,
                   "ronda": ronda,
                   "rondas": RONDAS,
-                  "whoami": "resultados",
                   "mostrarExtras": mostrarExtras,
                   "permite_modificar": permite_modificar,
                   "extras": extras,
@@ -510,7 +508,7 @@ class ResultadosHandler(BaseHandler):
                   "jugadores": getJugadores()}
             
         #self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados", mostrarExtras = mostrarExtras);
-        self.render("index.html", **params)
+        self.render("resultados.html", **params)
 
     def postLoggeado(self):
         ronda = self.request.get('ronda')
@@ -547,3 +545,60 @@ class ResultadosHandler(BaseHandler):
         saveResultado(USUARIO_ESPECIAL_RESULTADOS, ronda, json.dumps(resultados))
         updateScores()
         self.redirect("/resultados")
+
+########## RESULTADOS POR USUARIO HANDLER ##########
+class ResultadosPorUsuarioHandler(BaseHandler):
+    def getLoggeado(self):
+        ronda = self.request.get('ronda')
+
+        now = datetime.now()
+        if ronda:
+            for r in RONDAS:
+                if r['ronda'] == ronda:
+                    ronda = r
+                    break
+        else:
+            ronda = RONDAS[0]
+
+        usuario = self.request.get('usuario')
+
+        fixture = {}
+
+        current_user = None
+        if usuario and usuario != 'ninguno':
+            fixture = getFixture(ronda['ronda'], usuario)
+            current_user = usuario
+
+        mostrarExtras = False
+        extras = {}
+
+        if ronda['ronda'] == 'Primera':
+            if fixture != {}:
+                mostrarExtras = True
+            resultado = getResultado(usuario, ronda['ronda'])
+            if resultado:
+                extras = json.loads(resultado.resultados)
+
+        permite_modificar = False
+
+        usuarios = dbmodels.User.all()
+        usuarios.order("name")
+        usuarios = list(usuarios)
+
+        params = {"fixture": fixture,
+                  "ronda": ronda,
+                  "rondas": RONDAS,
+                  "mostrarExtras": mostrarExtras,
+                  "permite_modificar": permite_modificar,
+                  "extras": extras,
+                  "usuarios": usuarios,
+                  "current_user": current_user,
+                  "equipos": getEquipos(),
+                  "jugadores": getJugadores()}
+            
+        #self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados", mostrarExtras = mostrarExtras);
+        self.render("ver_plantillas.html", **params)
+
+    def postLoggeado(self):
+        usuario = self.request.get('usuario_seleccionado')
+        self.redirect("/resultados_por_usuario?usuario=%s" % usuario)

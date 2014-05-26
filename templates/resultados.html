@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body_content %}
+
+<div class="selector-rondas">
+    {% for r in rondas %}
+    <a href="/resultados?ronda={{r.ronda}}">{{r.ronda}}</a> 
+    {% endfor %}
+</div>
+
+{% include "rondas.html" %}
+
+{% endblock %}
