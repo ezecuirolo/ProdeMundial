@@ -18,12 +18,12 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 02:49:00 2014 GMT-0000'},
-          {'ronda': "Octavos", 'limite': 'Sun May 26 02:50:00 2014 GMT-0000'},
-          {'ronda': "Cuartos", 'limite': 'Sun May 26 02:55:00 2014 GMT-0000'},
-          {'ronda': "Semifinal", 'limite': 'Mon May 26 02:56:00 2014 GMT-0000'},
-          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 02:57:00 2014 GMT-0000'},
-          {'ronda': "Final", 'limite': 'Sun May 26 02:58:00 2014 GMT-0000'}]
+RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 03:49:00 2014 GMT-0000'},
+          {'ronda': "Octavos", 'limite': 'Sun May 26 03:50:00 2014 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Sun May 26 03:55:00 2014 GMT-0000'},
+          {'ronda': "Semifinal", 'limite': 'Mon May 26 03:56:00 2014 GMT-0000'},
+          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 03:57:00 2014 GMT-0000'},
+          {'ronda': "Final", 'limite': 'Sun May 26 03:58:00 2014 GMT-0000'}]
               
 
 

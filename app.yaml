@@ -7,6 +7,8 @@ threadsafe: true
 handlers:
 - url: /stylesheets
   static_dir: static/stylesheets
+- url: /scripts
+  static_dir: static/scripts
 - url: /data/(.*\.json)
   mime_type: application/json
   static_files: static/data/\1
