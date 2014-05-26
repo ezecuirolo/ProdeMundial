@@ -235,3 +235,57 @@ td.score-partido {
     font-size: 80%;
     color: #555;
 }
+
+.counter {
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    width: 80px;
+    margin: 0;
+}
+
+.counter .valor {
+    color: #176DB3;
+    font-size: 250%;
+}
+
+.counter .descripcion {
+    font-size: 120%;
+}
+
+.countdown .titulo {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 120%;
+}
+
+.countdown {
+    border: 1px solid black;
+}
+
+.contenido-countdown {
+    display: inline-block;
+    margin-bottom: 5px;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
+.expired {
+    color: #FF3333;
+}
+

@@ -2,11 +2,33 @@
 
 {% block body_content %}
 <script src='/scripts/countdown.js'></script>
+
 <script>
     CountDownTimer('{{ronda.limite}}', 'countdown');
 </script>
 
-<div id="countdown"></div>
+
+<div class="countdown" id="countdown">
+    <div class="titulo" id="titulo_countdown">Tiempo hasta el cierre</div>
+    <div class="contenido-countdown">
+        <div class="counter">
+            <div class="valor dias" id="dias_restantes">-</div>
+            <div class="descripcion">DÍAS</div>
+        </div>
+        <div class="counter">
+            <div class="valor horas" id="horas_restantes">-</div>
+            <div class="descripcion">HS</div>
+        </div>
+        <div class="counter">
+            <div class="valor minutos" id="minutos_restantes">-</div>
+            <div class="descripcion">MIN</div>
+        </div>
+        <div class="counter">
+            <div class="valor segundos" id="segundos_restantes">-</div>
+            <div class="descripcion">SEG</div>
+        </div>
+    </div>
+</div>
 
 {% if score %}
 <div class="score">
