@@ -9,6 +9,7 @@ import logging
 import utils
 import json
 import urllib2
+from datetime import datetime
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -17,7 +18,13 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = ["Primera", "Octavos", "Cuartos", "Semifinal", "TercerPuesto", "Final"]
+RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 02:30:00 2014 GMT-0000'},
+          {'ronda': "Octavos", 'limite': 'Sun May 26 02:35:00 2014 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Sun May 26 02:40:00 2014 GMT-0000'},
+          {'ronda': "Semifinal", 'limite': 'Mon May 26 02:45:00 2014 GMT-0000'},
+          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 02:50:00 2014 GMT-0000'},
+          {'ronda': "Final", 'limite': 'Sun May 26 02:55:00 2014 GMT-0000'}]
+              
 
 
 def getEquipos(update = False):
@@ -153,10 +160,10 @@ def getScore(user):
     #rondas
     for ronda in RONDAS:
         # traigo fixture de este user
-        fixtureUser = getFixture(ronda, user)
+        fixtureUser = getFixture(ronda['ronda'], user)
 
         # traigo resultados posta
-        fixtureResultados = getFixture(ronda, USUARIO_ESPECIAL_RESULTADOS)
+        fixtureResultados = getFixture(ronda['ronda'], USUARIO_ESPECIAL_RESULTADOS)
 
         if fixtureUser != {} and fixtureResultados != {}:
 
@@ -182,7 +189,7 @@ def getScore(user):
                         scorePartido += 10
                         scoreTotal += 10
 
-                    keyScore = 'score_' + ronda + "_" + partidoUser['equipo1'] + "_vs_" + partidoUser['equipo2']
+                    keyScore = 'score_' + ronda['ronda'] + "_" + partidoUser['equipo1'] + "_vs_" + partidoUser['equipo2']
                     score[keyScore] = scorePartido
 
     score["scoreTotal"] = scoreTotal
@@ -357,22 +364,41 @@ class PosicionesHandler(Handler):
 class MainPageHandler(BaseHandler):
     def getLoggeado(self):
         ronda = self.request.get('ronda')
-        if not ronda:
-            ronda = RONDAS[0]
 
-        fixture = getFixture(ronda, self.user.name)
+        now = datetime.now()
+        if ronda:
+            for r in RONDAS:
+                if r['ronda'] == ronda:
+                    ronda = r
+                    break
+        else:
+            for r in RONDAS:
+                ronda = r
+                limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
+                if limite > now:
+                    break
+
+        fixture = getFixture(ronda['ronda'], self.user.name)
 
         score = getScore(self.user.name)
 
         mostrarExtras = False
         extras = {}
 
-        if ronda == 'Primera':
+        permite_modificar = True
+        limite_ronda = datetime.strptime(ronda['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
+        if limite_ronda < now:
+            permite_modificar = False
+
+
+        if ronda['ronda'] == 'Primera':
             mostrarExtras = True
-            resultado = getResultado(self.user.name, ronda)
+            resultado = getResultado(self.user.name, ronda['ronda'])
             if resultado:
                 extras = json.loads(resultado.resultados)
 
+        # now = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M')
+        # now = datetime.strftime(datetime.now(), '%c')
         params = {"fixture": fixture,
                   "score": score,
                   "ronda": ronda,
@@ -380,6 +406,7 @@ class MainPageHandler(BaseHandler):
                   "whoami": "",
                   "mostrarExtras": mostrarExtras,
                   "extras": extras,
+                  "permite_modificar": permite_modificar,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}
             
@@ -430,16 +457,28 @@ class MainPageHandler(BaseHandler):
 class ResultadosHandler(BaseHandler):
     def getLoggeado(self):
         ronda = self.request.get('ronda')
-        if not ronda:
-            ronda = RONDAS[0]
-        fixture = getFixture(ronda, USUARIO_ESPECIAL_RESULTADOS)
+
+        now = datetime.now()
+        if ronda:
+            for r in RONDAS:
+                if r['ronda'] == ronda:
+                    ronda = r
+                    break
+        else:
+            for r in RONDAS:
+                ronda = r
+                limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
+                if limite > now:
+                    break
+
+        fixture = getFixture(ronda['ronda'], USUARIO_ESPECIAL_RESULTADOS)
 
         mostrarExtras = False
         extras = {}
 
         if ronda == 'Primera':
             mostrarExtras = True
-            resultado = getResultado(USUARIO_ESPECIAL_RESULTADOS, ronda)
+            resultado = getResultado(USUARIO_ESPECIAL_RESULTADOS, ronda['ronda'])
             if resultado:
                 extras = json.loads(resultado.resultados)
 
@@ -449,6 +488,7 @@ class ResultadosHandler(BaseHandler):
                   "rondas": RONDAS,
                   "whoami": "resultados",
                   "mostrarExtras": mostrarExtras,
+                  "permite_modificar": True,
                   "extras": extras,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}

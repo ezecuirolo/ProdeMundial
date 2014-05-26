@@ -178,6 +178,7 @@ input[type=submit] {
 
 .resultado {
     width: 25px;
+    height: 26px;
 }
 
 .resultado.radiooption {

@@ -2,7 +2,7 @@
 
 {% block body_content %}<script>
 
-    CountDownTimer('Wed May 25 2014 14:06:16 GMT-0300 ', 'countdown');
+    CountDownTimer('{{ronda.limite}}', 'countdown');
 
     function CountDownTimer(dt, id)
     {
@@ -20,7 +20,7 @@
             if (distance < 0) {
 
                 clearInterval(timer);
-                document.getElementById(id).innerHTML = 'EXPIRED!';
+                document.getElementById(id).innerHTML = 'Ya no se puede modificar esta sección!';
 
                 return;
             }
@@ -43,9 +43,10 @@
     }
 
 </script>
-<!--
+{% if whoami != "resultados" %}
 <div id="countdown"></div>
--->
+{% endif %}
+
 {% if score %}
 <div class="score">
 Puntos: {{score.scoreTotal}} <br/>
@@ -58,7 +59,7 @@ Puntos: {{score.scoreTotal}} <br/>
 
 <div class="selector-rondas">
     {% for r in rondas %}
-    <a href="/{{whoami}}?ronda={{r}}">{{r}}</a> 
+    <a href="/{{whoami}}?ronda={{r.ronda}}">{{r.ronda}}</a> 
     {% endfor %}
 </div>
 
@@ -72,7 +73,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Campeón</td>
                             <td>
-                                <select name="campeon">
+                                <select name="campeon"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
@@ -90,7 +95,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Segundo</td>
                             <td>
-                                <select name="segundo">
+                                <select name="segundo"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
@@ -108,7 +117,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Tercero</td>
                             <td>
-                                <select name="tercero">
+                                <select name="tercero"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
@@ -126,7 +139,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Cuarto</td>
                             <td>
-                                <select name="cuarto">
+                                <select name="cuarto"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for equipo in equipos %}
                                     <option value="{{equipo.code}}"
@@ -144,7 +161,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Goleador 1</td>
                             <td>
-                                <select name="goleador1">
+                                <select name="goleador1"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for jugador in jugadores %}
                                     <option value="{{jugador.key}}"
@@ -162,7 +183,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Goleador 2</td>
                             <td>
-                                <select name="goleador2">
+                                <select name="goleador2"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for jugador in jugadores %}
                                     <option value="{{jugador.key}}"
@@ -180,7 +205,11 @@ Puntos: {{score.scoreTotal}} <br/>
                         <tr>
                             <td>Posición Argentina</td>
                             <td>
-                                <select name="posicion_argentina">
+                                <select name="posicion_argentina"
+                                    {% if not permite_modificar %}
+                                    disabled
+                                    {% endif %}
+                                    >
                                     <option value="ninguno">-</option>
                                     {% for pos in range(1, 33) %}
                                     <option value="{{pos}}"
@@ -211,22 +240,32 @@ Puntos: {{score.scoreTotal}} <br/>
                         {% for partido in datos_grupo.partidos %}
                         <tr>
                             <td class="equipo">{{partido.equipo1}}</td>
-                            <td class="resultado radiooption"><input type="radio" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
+                            <td class="resultado radiooption"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
                                 {% if partido.primerGol == partido.equipo1 %}
                                 checked
                                 {% endif %}
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
                                 /></td>
-                            <td class="resultado"><input type="text" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"
-                                /></td>
-                            <td class="resultado"><input type="text" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
-                            <td class="resultado radiooption"><input type="radio" name="{{ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
+                            {% if permite_modificar %}
+                            <td class="resultado"><input type="text" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"/></td>
+                            <td class="resultado"><input type="text" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"/></td>
+                            {% else %}
+                            <td class="resultado">{{partido.scoreEquipo1}}</td>
+                            <td class="resultado">{{partido.scoreEquipo2}}</td>
+                            {% endif %}
+                            <td class="resultado radiooption"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
                                 {% if partido.primerGol == partido.equipo2 %}
                                 checked
+                                {% endif %}
+                                {% if not permite_modificar %}
+                                disabled
                                 {% endif %}
                                 /></td>
                             <td class="equipo">{{partido.equipo2}}</td>
                             {% if score %}
-                            <td class="score-partido">{{score["score_" + ronda + "_" + partido.equipo1 + "_vs_" + partido.equipo2]}}</td>
+                            <td class="score-partido">{{score["score_" + ronda.ronda+ "_" + partido.equipo1 + "_vs_" + partido.equipo2]}}</td>
                             {% endif %}
                         </tr>
                         {% endfor %}
@@ -236,8 +275,10 @@ Puntos: {{score.scoreTotal}} <br/>
         </div>
     </div>
     {% endfor %}
-    <input type="hidden" name="ronda" value="{{ronda}}"/>
+    <input type="hidden" name="ronda" value="{{ronda.ronda}}"/>
+    {% if permite_modificar %}
     <input type="submit"/>
+    {% endif %}
 </form>
 
 {% endblock %}
