@@ -18,12 +18,12 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 02:30:00 2014 GMT-0000'},
-          {'ronda': "Octavos", 'limite': 'Sun May 26 02:35:00 2014 GMT-0000'},
-          {'ronda': "Cuartos", 'limite': 'Sun May 26 02:40:00 2014 GMT-0000'},
-          {'ronda': "Semifinal", 'limite': 'Mon May 26 02:45:00 2014 GMT-0000'},
-          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 02:50:00 2014 GMT-0000'},
-          {'ronda': "Final", 'limite': 'Sun May 26 02:55:00 2014 GMT-0000'}]
+RONDAS = [{'ronda': "Primera", 'limite': 'Sun May 26 02:49:00 2014 GMT-0000'},
+          {'ronda': "Octavos", 'limite': 'Sun May 26 02:50:00 2014 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Sun May 26 02:55:00 2014 GMT-0000'},
+          {'ronda': "Semifinal", 'limite': 'Mon May 26 02:56:00 2014 GMT-0000'},
+          {'ronda': "TercerPuesto", 'limite': 'Sun May 26 02:57:00 2014 GMT-0000'},
+          {'ronda': "Final", 'limite': 'Sun May 26 02:58:00 2014 GMT-0000'}]
               
 
 
@@ -397,6 +397,10 @@ class MainPageHandler(BaseHandler):
             if resultado:
                 extras = json.loads(resultado.resultados)
 
+            for r in RONDAS:
+                if r['ronda'] == ronda:
+                    ronda = r
+                    break
         # now = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M')
         # now = datetime.strftime(datetime.now(), '%c')
         params = {"fixture": fixture,
@@ -415,6 +419,15 @@ class MainPageHandler(BaseHandler):
 
     def postLoggeado(self):
         ronda = self.request.get('ronda')
+        now = datetime.now()
+
+        for r in RONDAS:
+            if r['ronda'] == ronda:
+                limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
+                if limite < now:
+                    self.redirect("/")
+                    return
+
         fixture = getFixture(ronda)
         resultados = {}
 
@@ -476,19 +489,22 @@ class ResultadosHandler(BaseHandler):
         mostrarExtras = False
         extras = {}
 
-        if ronda == 'Primera':
+        if ronda['ronda'] == 'Primera':
             mostrarExtras = True
             resultado = getResultado(USUARIO_ESPECIAL_RESULTADOS, ronda['ronda'])
             if resultado:
                 extras = json.loads(resultado.resultados)
 
+        permite_modificar = False
+        if self.user.name == 'mdascanio' or self.user.name == 'nico':
+            permite_modificar = True
 
         params = {"fixture": fixture,
                   "ronda": ronda,
                   "rondas": RONDAS,
                   "whoami": "resultados",
                   "mostrarExtras": mostrarExtras,
-                  "permite_modificar": True,
+                  "permite_modificar": permite_modificar,
                   "extras": extras,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}
