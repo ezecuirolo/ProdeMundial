@@ -46,9 +46,15 @@ Puntos: {{score.scoreTotal}} <br/>
 
 
 <div class="selector-rondas">
-    {% for r in rondas %}
-    <a href="/?ronda={{r.ronda}}">{{r.ronda}}</a> 
-    {% endfor %}
+    <ul class="menu-rondas">
+        {% for r in rondas %}
+        <li
+        {% if ronda.ronda == r.ronda %}
+        class="seleccionada"
+        {% endif %}
+        ><a href="/?ronda={{r.ronda}}">{{r.ronda}}</a> </li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% include "rondas.html" %}
