@@ -9,6 +9,9 @@ handlers:
   static_dir: static/stylesheets
 - url: /scripts
   static_dir: static/scripts
+- url: /images/(.*\.png)
+  static_files: static/images/\1
+  upload: static/images/(.*\.png)
 - url: /data/(.*\.json)
   mime_type: application/json
   static_files: static/data/\1
