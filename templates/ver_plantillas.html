@@ -4,34 +4,48 @@
 
 <form method="post">
     <label>Ver usuario
-    <select name="usuario_seleccionado">
-        <option value="ninguno">-</option>
-        {% for usuario in usuarios %}
-        <option value="{{usuario.name}}"
-        {% if current_user == usuario.name %}
-        selected
-        {% endif %}
-        >{{usuario.name}}</option>
-        {% endfor %}
+        <select name="usuario_seleccionado">
+            <option value="ninguno">-</option>
+            {% for usuario in usuarios %}
+            <option value="{{usuario.name}}"
+            {% if current_user == usuario.name %}
+            selected
+            {% endif %}
+            >{{usuario.name}}</option>
+            {% endfor %}
     </select> </label>
     <input type="submit"/>
 </form>
 
 {% if score %}
 <div class="score">
-Puntos: {{score.scoreTotal}} <br/>
+    Puntos: {{score.scoreTotal}} <br/>
 </div>
 {% endif %}
 
+
+
 <div class="selector-rondas">
-    {% for r in rondas %}
-    {% if current_user and current_user != 'ninguno' %}
-    <a href="/resultados_por_usuario?usuario={{current_user}}&ronda={{r.ronda}}">{{r.ronda}}</a> 
-    {% else %}
-    <a href="/resultados_por_usuario?ronda={{r.ronda}}">{{r.ronda}}</a> 
-    {% endif %}
-    {% endfor %}
+    <ul class="menu-rondas">
+        {% for r in rondas %}
+        <li
+        {% if ronda.ronda == r.ronda %}
+        class="seleccionada"
+        {% endif %}
+        >
+        {% if current_user and current_user != 'ninguno' %}
+        <a href="/resultados_por_usuario?usuario={{current_user}}&ronda={{r.ronda}}">{{r.ronda}}</a> 
+        {% else %}
+        <a href="/resultados_por_usuario?ronda={{r.ronda}}">{{r.ronda}}</a> 
+        {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
+
+
+
+
 
 {% include "rondas.html" %}
 
