@@ -9,7 +9,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
 
-    width: 430px;
+    width: 600px;
     margin: 0 auto;
     padding: 10px;
     color: #333;
@@ -327,6 +327,24 @@ input[type=submit] {
     padding: 9px 8px 0px 8px;
 }
 
+.selector-rondas {
+    display: inline-block;
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
 .selector-rondas a {
     margin: 0 5px;
 }
@@ -371,6 +389,7 @@ td.score-partido {
 .contenido-countdown {
     display: inline-block;
     margin-bottom: 5px;
+    margin: 0 auto;
 
     /* Firefox */
     display:-moz-box;
@@ -394,8 +413,8 @@ td.score-partido {
 
 .score {
     font-weight: bold;
-    font-size: 120%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 150%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 

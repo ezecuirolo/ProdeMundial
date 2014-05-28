@@ -10,13 +10,15 @@
         <div class="container-all">
 
             <ul class="menu">
-                <li><a href="/reglas">reglas</a></li>
                 {% if user %}
-                <li><a href="/posiciones">posiciones</a></li>
-                <li><a href="/resultados">resultados</a></li>
-                <li></ku><a href="/resultados_por_usuario">Ver otros</a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/posiciones">Posiciones</a></li>
+                <li></ku><a href="/resultados_por_usuario">Resultados por participante</a></li>
+                <li><a href="/resultados">Resultados reales</a></li>
+                <li><a href="/reglas">reglas</a></li>
                 <li>{{user.name}} (<a href="/logout">logout</a>)</li>
                 {% else %}
+                <li><a href="/reglas">reglas</a></li>
                 <li><a href="/login">login</a></li>
                 <li><a href="/signup">Registrarse</a></li>
                 {% endif %}
