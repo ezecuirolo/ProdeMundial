@@ -3,165 +3,164 @@
     <div class="ronda">
         <div class="non-grupo">
             <div class="titulo">Extras</div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Campeón</td>
-                            <td>
-                                <select name="campeon"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for equipo in equipos %}
-                                    <option value="{{equipo.code}}"
-                                    {% if extras.campeon == equipo.code %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{equipo.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.campeon}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Segundo</td>
-                            <td>
-                                <select name="segundo"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for equipo in equipos %}
-                                    <option value="{{equipo.code}}"
-                                    {% if extras.segundo == equipo.code %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{equipo.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.segundo}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Tercero</td>
-                            <td>
-                                <select name="tercero"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for equipo in equipos %}
-                                    <option value="{{equipo.code}}"
-                                    {% if extras.tercero == equipo.code %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{equipo.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.tercero}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Cuarto</td>
-                            <td>
-                                <select name="cuarto"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for equipo in equipos %}
-                                    <option value="{{equipo.code}}"
-                                    {% if extras.cuarto == equipo.code %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{equipo.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.cuarto}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Goleador 1</td>
-                            <td>
-                                <select name="goleador1"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for jugador in jugadores %}
-                                    <option value="{{jugador.key}}"
-                                    {% if extras.goleador1 == jugador.key %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{jugador.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.goleador1}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Goleador 2</td>
-                            <td>
-                                <select name="goleador2"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for jugador in jugadores %}
-                                    <option value="{{jugador.key}}"
-                                    {% if extras.goleador2 == jugador.key %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{jugador.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.goleador2}}</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Posición Argentina</td>
-                            <td>
-                                <select name="posicion_argentina"
-                                    {% if not permite_modificar %}
-                                    disabled
-                                    {% endif %}
-                                    >
-                                    <option value="ninguno">-</option>
-                                    {% for pos in range(1, 33) %}
-                                    <option value="{{pos}}"
-                                    {% if extras.posicion_argentina == pos %}
-                                    selected="selected"
-                                    {% endif %}
-                                    >{{pos}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            {% if score %}
-                            <td class="score-partido">{{score.posicion_argentina}}</td>
-                            {% endif %}
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Campeón</td>
+                        <td>
+                            <select name="campeon"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for equipo in equipos %}
+                                <option value="{{equipo.code}}"
+                                {% if extras.campeon == equipo.code %}
+                                selected="selected"
+                                {% endif %}
+                                >{{equipo.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.campeon}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Segundo</td>
+                        <td>
+                            <select name="segundo"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for equipo in equipos %}
+                                <option value="{{equipo.code}}"
+                                {% if extras.segundo == equipo.code %}
+                                selected="selected"
+                                {% endif %}
+                                >{{equipo.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.segundo}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Tercero</td>
+                        <td>
+                            <select name="tercero"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for equipo in equipos %}
+                                <option value="{{equipo.code}}"
+                                {% if extras.tercero == equipo.code %}
+                                selected="selected"
+                                {% endif %}
+                                >{{equipo.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.tercero}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Cuarto</td>
+                        <td>
+                            <select name="cuarto"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for equipo in equipos %}
+                                <option value="{{equipo.code}}"
+                                {% if extras.cuarto == equipo.code %}
+                                selected="selected"
+                                {% endif %}
+                                >{{equipo.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.cuarto}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Goleador 1</td>
+                        <td>
+                            <select name="goleador1"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.goleador1 == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.goleador1}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Goleador 2</td>
+                        <td>
+                            <select name="goleador2"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.goleador2 == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.goleador2}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Posición Argentina</td>
+                        <td>
+                            <select name="posicion_argentina"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for pos in range(1, 33) %}
+                                <option value="{{pos}}"
+                                {% if extras.posicion_argentina == pos %}
+                                selected="selected"
+                                {% endif %}
+                                >{{pos}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        {% if score %}
+                        <td class="score-partido">{{score.posicion_argentina}}</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     {% endif %}
