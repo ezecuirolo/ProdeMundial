@@ -82,7 +82,7 @@ label + label {
     border: 1px solid #D8D8D8;
 }
 
-.boton-signup {
+.boton-signup, .boton-guardar{
     //display: block;
     margin: 0 auto;
     margin-top: 10px;
@@ -99,12 +99,11 @@ label + label {
     text-align: center;
     text-shadow: 0 1px rgba(255, 255, 255, 0.5);
     background: #fcfcfc;
-    border: 1px solid;
+    border: 2px solid;
     border-color: #d8d8d8 #d1d1d1 #c3c3c3;
     border-radius: 2px;
     cursor: pointer;
 }
-
 /*
 input[type=text] {
     width: 500px;
