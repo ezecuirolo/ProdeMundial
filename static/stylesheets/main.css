@@ -107,6 +107,23 @@ label + label {
     border-radius: 2px;
     cursor: pointer;
 }
+
+.boton-chico {
+    display: inline;
+    height: 120%;
+    padding: 0 15px;
+    text-align: center;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    background: #DDEEDD;
+    border: 2px solid;
+    border-color: #d8d8d8 #d1d1d1 #c3c3c3;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+label {
+    font-size: 100%;
+}
 /*
 input[type=text] {
     width: 500px;
@@ -253,7 +270,7 @@ input[type=submit] {
 
 .grupo, .non-grupo {
     display: inline-block;
-    border: 1px solid black;
+    border: 2px solid black;
     padding: 10px;
     text-align: center;
     background-color: #DCFFDC;
@@ -412,7 +429,9 @@ td.score-partido {
 }
 
 .countdown {
-    border: 1px solid black;
+    border: 2px solid black;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .contenido-countdown {

@@ -2,20 +2,23 @@
 
 {% block body_content %}
 
-<form method="post">
-    <label>Ver usuario
-        <select name="usuario_seleccionado">
-            <option value="ninguno">-</option>
-            {% for usuario in usuarios %}
-            <option value="{{usuario.name}}"
-            {% if current_user == usuario.name %}
-            selected
-            {% endif %}
-            >{{usuario.name}}</option>
-            {% endfor %}
-    </select> </label>
-    <input type="submit"/>
-</form>
+<div>
+    <form method="post">
+        <label>Usuario
+            <select name="usuario_seleccionado">
+                <option value="ninguno">-</option>
+                {% for usuario in usuarios %}
+                <option value="{{usuario.name}}"
+                {% if current_user == usuario.name %}
+                selected
+                {% endif %}
+                >{{usuario.name}}</option>
+                {% endfor %}
+            </select> 
+            <input type="submit" value="Ver" class="boton-chico"/>
+        </label>
+    </form>
+</div>
 
 {% if score %}
 <div class="score">
