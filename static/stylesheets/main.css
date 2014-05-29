@@ -161,11 +161,33 @@ input[type=submit] {
     color: black;
 }
 
+.selector-rondas {
+    display: inline-block;
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
+.selector-rondas a {
+    margin: 0 5px;
+}
+
 .menu-rondas {
     margin: 0;
     padding: 0;
     font-weight: bold;
-    width: 100%;
+    //width: 100%;
     overflow: hidden;
     margin-bottom: 1em;
     //border-width: 1px 0;
@@ -354,28 +376,6 @@ input[type=submit] {
 .posiciones a:active {
     color:#75AADB;
     background-color:#EEEEEE;
-}
-
-.selector-rondas {
-    display: inline-block;
-    /* Firefox */
-    display:-moz-box;
-    -moz-box-pack:center;
-    -moz-box-align:center;
-
-    /* Safari and Chrome */
-    display:-webkit-box;
-    -webkit-box-pack:center;
-    -webkit-box-align:center;
-
-    /* W3C */
-    display:box;
-    box-pack:center;
-    box-align:center;
-}
-
-.selector-rondas a {
-    margin: 0 5px;
 }
 
 td.score-partido {
