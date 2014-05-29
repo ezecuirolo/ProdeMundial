@@ -299,6 +299,7 @@ input[type=submit] {
 
 .posiciones {
     display: inline-block;
+    width: 100%;
     /* Firefox */
     display:-moz-box;
     -moz-box-pack:center;
@@ -328,6 +329,28 @@ input[type=submit] {
 
 .posiciones td {
     padding: 9px 8px 0px 8px;
+}
+
+.posiciones a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.posiciones a:link {
+    color:#75AADB;
+}
+
+.posiciones a:visited {
+    color:#75AADB;
+}
+
+.posiciones a:hover {
+    color:#75AADB;
+    background-color:#DDD;
+}
+.posiciones a:active {
+    color:#75AADB;
+    background-color:#EEEEEE;
 }
 
 .selector-rondas {
