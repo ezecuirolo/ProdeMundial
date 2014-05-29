@@ -6,31 +6,31 @@
 Crea tu usuario con tu nombre y apellido para una fácil identificación.
 </p>
 
-<form method="post" class="signup">
+<form method="post" class="simple-form">
     <table>
         <tbody>
             <tr>
                 <td class="label">Usuario</td>
-                <td><input type="text" name="username" class="signup-input" value="{{username}}"/></td>
+                <td><input type="text" name="username" class="simple-input" value="{{username}}"/></td>
                 <td class="error">{{error_username}}</td>
             </tr>
             <tr>
                 <td class="label">Contraseña</td>
-                <td><input type="password" name="password" class="signup-input" value=""/></td>
+                <td><input type="password" name="password" class="simple-input" value=""/></td>
                 <td class="error">{{error_password}}</td>
             </tr>
             <tr>
                 <td class="label">Verificar Contraseña</td>
-                <td><input type="password" name="verify" class="signup-input" value=""/></td>
+                <td><input type="password" name="verify" class="simple-input" value=""/></td>
                 <td class="error">{{error_verify}}</td>
             </tr>
             <tr>
                 <td class="label">Email (opcional)</td>
-                <td><input type="text" name="email" class="signup-input" value="{{email}}"/></td>
+                <td><input type="text" name="email" class="simple-input" value="{{email}}"/></td>
                 <td class="error">{{error_email}}</td>
             </tr>
         </tbody>
     </table>
-    <input type="submit" value="Registrarse" class="boton-signup"/>
+    <input type="submit" value="Registrarse" class="boton-simple"/>
 </form>
 {% endblock %}

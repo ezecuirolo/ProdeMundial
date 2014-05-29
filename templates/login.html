@@ -3,20 +3,20 @@
 {% block body_content%}
 <h2>Login</h2>
 
-<form method="post">
+<form method="post" class="simple-form">
     <table>
         <tbody>
             <tr>
                 <td class="label">Username</td>
-                <td><input type="text" name="username" value=""/></td>
+                <td><input type="text" name="username" class="simple-input" value=""/></td>
             </tr>
             <tr>
                 <td class="label">Password</td>
-                <td><input type="password" name="password" value=""/></td>
+                <td><input type="password" name="password" class="simple-input" value=""/></td>
             </tr>
             <div class="error">{{error_login}}</div>
         </tbody>
     </table>
-    <input type="submit"/>
+    <input type="submit" value="Login" class="boton-simple"/>
 </form>
 {% endblock %}
