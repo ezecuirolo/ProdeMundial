@@ -307,7 +307,7 @@ input[type=submit] {
 }
 
 .ronda option {
-    direction: rtl;
+    //direction: rtl;
 }
 
 .partidos tr:nth-child(even) {
