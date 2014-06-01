@@ -495,7 +495,7 @@ class ResultadosHandler(BaseHandler):
                 extras = json.loads(resultado.resultados)
 
         permite_modificar = False
-        if self.user.name == 'mdascanio' or self.user.name == 'nico':
+        if self.user.name == 'MarianoDascanio' or self.user.name == 'NicoDascanio':
             permite_modificar = True
 
         params = {"fixture": fixture,
