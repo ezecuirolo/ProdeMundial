@@ -186,8 +186,8 @@ def getScore(user):
 
                     # 10 puntos por primer gol
                     if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
-                        scorePartido += 10
-                        scoreTotal += 10
+                        scorePartido += 5
+                        scoreTotal += 5
 
                     keyScore = 'score_' + ronda['ronda'] + "_" + partidoUser['equipo1'] + "_vs_" + partidoUser['equipo2']
                     score[keyScore] = scorePartido
