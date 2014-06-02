@@ -1,18 +1,17 @@
 function CountDownTimer(dt, id)
 {
-    var end = new Date(dt);
+    //var end = new Date(dt);
 
-    var _second = 1000;
+    var _second = 1;
     var _minute = _second * 60;
     var _hour = _minute * 60;
     var _day = _hour * 24;
     var timer;
+    tiempo_restante = dt;
 
     function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
         var countdown_element = document.getElementById(id);
-        if (distance < 0) {
+        if (tiempo_restante < 0) {
 
             clearInterval(timer);
             var titulo = countdown_element.getElementsByClassName('titulo')[0];
@@ -31,10 +30,10 @@ function CountDownTimer(dt, id)
 
             return;
         }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
+        var days = Math.floor(tiempo_restante / _day);
+        var hours = Math.floor((tiempo_restante % _day) / _hour);
+        var minutes = Math.floor((tiempo_restante % _hour) / _minute);
+        var seconds = Math.floor((tiempo_restante % _minute) / _second);
 
         if (hours < 10) {
             hours = '0' + hours;
@@ -54,6 +53,8 @@ function CountDownTimer(dt, id)
         countdown_element.getElementsByClassName('horas')[0].innerHTML = hours;
         countdown_element.getElementsByClassName('minutos')[0].innerHTML = minutes;
         countdown_element.getElementsByClassName('segundos')[0].innerHTML = seconds;
+
+        tiempo_restante -= 1;
     }
 
     timer = setInterval(showRemaining, 1000);

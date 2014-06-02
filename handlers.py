@@ -366,10 +366,12 @@ class MainPageHandler(BaseHandler):
         ronda = self.request.get('ronda')
 
         now = datetime.now()
+        limite = None
         if ronda:
             for r in RONDAS:
                 if r['ronda'] == ronda:
                     ronda = r
+                    limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
                     break
         else:
             for r in RONDAS:
@@ -377,6 +379,8 @@ class MainPageHandler(BaseHandler):
                 limite = datetime.strptime(r['limite'], '%a %B %d %H:%M:%S %Y GMT-0000')
                 if limite > now:
                     break
+
+        ronda["diff_tiempo"] = (limite - now).total_seconds()
 
         fixture = getFixture(ronda['ronda'], self.user.name)
 
