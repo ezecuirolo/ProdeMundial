@@ -287,7 +287,7 @@ class SignUpHandler(Handler):
         error_en_form = False
 
         if not utils.valid_username_form(username):
-            params["error_username"] = "Nombre de usuario invalido"
+            params["error_username"] = "Nombre de usuario invalido (no debe tener espacios)"
             error_en_form = True
         else:
             u = dbmodels.User.by_name(username)
