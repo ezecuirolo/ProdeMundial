@@ -334,7 +334,7 @@ class LoginHandler(Handler):
             self.login(user)
             self.redirect('/')
         else:
-            error = "Invalid user and pass"
+            error = "Usuario y contrasena invalido"
             self.render_page(error)
 
 
