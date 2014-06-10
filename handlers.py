@@ -359,6 +359,21 @@ class PosicionesHandler(Handler):
 
         self.render('posiciones.html', usuarios = usuarios)
 
+########## USUARIOS HANDLER ##########
+class UsuariosHandler(Handler):
+    def get(self):
+        if not self.user:
+            self.redirect('/')
+            return
+            
+        if self.user.name != 'NicoDascanio' and self.user.name != 'MarianoDascanio':
+            self.redirect('/')
+            return
+
+        usuarios = dbmodels.User.all()
+        usuarios = list(usuarios)
+
+        self.render('usuarios.html', usuarios = usuarios)
 
 ########## MAIN PAGE HANDLER ##########
 class MainPageHandler(BaseHandler):
