@@ -33,7 +33,7 @@ def getPosiciones():
     if usuarios_posiciones is None:
         usuarios_posiciones = dbmodels.User.all()
         usuarios_posiciones.order("-puntaje")
-        usuarios_posiciones = list(usuarios)
+        usuarios_posiciones = list(usuarios_posiciones)
         memcache.set(key, usuarios_posiciones)
 
     return usuarios_posiciones
@@ -370,9 +370,7 @@ class ReglasHandler(Handler):
 ########## LOGOUT HANDLER ##########
 class PosicionesHandler(Handler):
     def get(self):
-        usuarios = dbmodels.User.all()
-        usuarios.order("-puntaje")
-        usuarios = list(usuarios)
+        usuarios = getPosiciones()
 
         self.render('posiciones.html', usuarios = usuarios)
 
