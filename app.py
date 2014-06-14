@@ -10,7 +10,6 @@ application = webapp2.WSGIApplication([
     ('/resultados', handlers.ResultadosHandler),
     ('/usuarios', handlers.UsuariosHandler),
     ('/resultados_por_usuario', handlers.ResultadosPorUsuarioHandler),
-    ('/add_users_results', handlers.AddUsersResultsHandler),
     ('/', handlers.MainPageHandler),
     ],
     debug = True)
