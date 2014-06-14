@@ -18,7 +18,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 12 19:00:00 2014 GMT-0000'},
+RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 18 19:00:00 2014 GMT-0000'},
           {'ronda': "Octavos", 'limite': 'Sat June 28 15:00:00 2014 GMT-0000'},
           {'ronda': "Cuartos", 'limite': 'Fri July 4 19:00:00 2014 GMT-0000'},
           {'ronda': "Semifinal", 'limite': 'Tue July 8 19:00:00 2014 GMT-0000'},
@@ -170,6 +170,10 @@ def getScore(user):
             for key, value in fixtureResultados.iteritems():
                 for partidoUser, partidoReal in zip(value['partidos'], fixtureUser[key]['partidos']):
                     scorePartido = 0
+                    partidoUser['scoreEquipo1'] = partidoUser['scoreEquipo1'].strip()
+                    partidoUser['scoreEquipo2'] = partidoUser['scoreEquipo2'].strip()
+                    partidoReal['scoreEquipo1'] = partidoReal['scoreEquipo1'].strip()
+                    partidoReal['scoreEquipo2'] = partidoReal['scoreEquipo2'].strip()
                     if partidoUser['scoreEquipo1'].isdigit() and partidoUser['scoreEquipo2'].isdigit() and partidoReal['scoreEquipo1'].isdigit() and partidoReal['scoreEquipo2'].isdigit():
                         # 30 puntos por acertar si ganó, empató o perdió
                         restaUser = int(partidoUser['scoreEquipo1']) - int(partidoUser['scoreEquipo2'])
