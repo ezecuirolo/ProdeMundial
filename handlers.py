@@ -18,7 +18,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 18 19:00:00 2014 GMT-0000'},
+RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 12 19:00:00 2014 GMT-0000'},
           {'ronda': "Octavos", 'limite': 'Sat June 28 15:00:00 2014 GMT-0000'},
           {'ronda': "Cuartos", 'limite': 'Fri July 4 19:00:00 2014 GMT-0000'},
           {'ronda': "Semifinal", 'limite': 'Tue July 8 19:00:00 2014 GMT-0000'},
@@ -26,6 +26,17 @@ RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 18 19:00:00 2014 GMT-0000'},
           {'ronda': "Final", 'limite': 'Sun July 13 18:00:00 2014 GMT-0000'}]
               
 
+def getPosiciones():
+    key = 'posiciones'
+    usuarios_posiciones = memcache.get(key)
+
+    if usuarios_posiciones is None:
+        usuarios_posiciones = dbmodels.User.all()
+        usuarios_posiciones.order("-puntaje")
+        usuarios_posiciones = list(usuarios)
+        memcache.set(key, usuarios_posiciones)
+
+    return usuarios_posiciones
 
 def getEquipos(update = False):
     key = 'equipos'
@@ -205,6 +216,8 @@ def updateScores():
         score = getScore(user.name)
         user.puntaje = score['scoreTotal']
         user.put()
+
+    memcache.delete('posiciones')
 
 ########## HANDLER ##########
 class Handler(webapp2.RequestHandler):
