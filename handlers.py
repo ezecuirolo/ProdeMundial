@@ -260,14 +260,14 @@ class Handler(webapp2.RequestHandler):
 class BaseHandler(Handler):
     def get(self):
         if not self.user:
-            self.redirect("/signup")
+            self.redirect("/login")
             return
 
         self.getLoggeado()
 
     def post(self):
         if not self.user:
-            self.redirect("/signup")
+            self.redirect("/login")
             return
 
         self.postLoggeado()
