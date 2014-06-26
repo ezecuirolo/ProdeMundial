@@ -31,10 +31,14 @@ def getPosiciones():
     usuarios_posiciones = memcache.get(key)
 
     if usuarios_posiciones is None:
+        logging.info("getPosiciones(). 'posiciones' no esta en cache")
         usuarios_posiciones = dbmodels.User.all()
         usuarios_posiciones.order("-puntaje")
         usuarios_posiciones = list(usuarios_posiciones)
         memcache.set(key, usuarios_posiciones)
+        logging.info('DB_CALL: User.all().order("-puntaje")')
+    else:
+        logging.info("getPosiciones(). 'posiciones' esta en cache")
 
     return usuarios_posiciones
 
@@ -43,12 +47,15 @@ def getEquipos(update = False):
     equipos = memcache.get(key)
 
     if equipos is None or update:
+        logging.info("getEquipos(). 'equipos' no esta en cache")
         try:
             equiposFile = open(os.path.dirname(__file__) + '/static/data/Equipos.json')
             equipos = json.load(equiposFile)
             memcache.set(key, equipos)
         except:
             return []
+    else:
+        logging.info("getEquipos(). 'equipos' esta en cache")
 
     return equipos
 
@@ -71,10 +78,14 @@ def getResultado(user, ronda, update = False):
     resultado = memcache.get(key)
 
     if resultado is None or update:
+        logging.info("getResultado(%s, %s). '%s' no esta en cache" %(user, ronda, key))
         resultado = dbmodels.Resultado.by_user(user, ronda)
+        logging.info("DB_CALL: Resultado_by_user(%s, %s)" % (user, ronda))
         if len(resultado) > 0:
             resultado = resultado[0]
             memcache.set(key, resultado)
+    else:
+        logging.info("getResultado(%s, %s). '%s' esta en cache" %(user, ronda, key))
 
     return resultado
 
@@ -132,6 +143,8 @@ def getScore(user):
     score = {}
 
     scoreTotal = 0
+
+    logging.info("getScore(%s)" % user)
 
     # extras
     resultadoUser = getResultado(user, 'Primera')
@@ -211,7 +224,9 @@ def getScore(user):
     return score
 
 def updateScores():
+    logging.info("updateScores()")
     users = dbmodels.User.todos()
+    logging.info("DB_CALL: User.todos()")
     for user in users:
         score = getScore(user.name)
         user.puntaje = score['scoreTotal']
@@ -254,6 +269,7 @@ class Handler(webapp2.RequestHandler):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         user_id = self.read_secure_cookie('user_id')
         self.user = user_id and dbmodels.User.by_id(int(user_id))
+        logging.info("DB_CALL: User.by_id(int(%s))" % user_id)
 
 
 ########## BASE HANDLER ##########
@@ -290,6 +306,7 @@ class SignUpHandler(Handler):
     
     def get(self):
         self.render_page()
+        logging.info("GET_REQUEST SIGNUPHANDLER")
 
     def post(self):
         params = {}
@@ -341,8 +358,10 @@ class LoginHandler(Handler):
 
     def get(self):
         self.render_page()
+        logging.info("GET_REQUEST LOGINHANDLER")
 
     def post(self):
+        logging.info("POST_REQUEST LOGINHANDLER")
         username = self.request.get("username")
         password = self.request.get("password")
 
@@ -362,14 +381,15 @@ class LogoutHandler(Handler):
         self.response.delete_cookie('user_id')
         self.redirect('/')
 
-########## LOGOUT HANDLER ##########
+########## REGLAS HANDLER ##########
 class ReglasHandler(Handler):
     def get(self):
         self.render('reglas.html')
 
-########## LOGOUT HANDLER ##########
+########## POSICIONES HANDLER ##########
 class PosicionesHandler(Handler):
     def get(self):
+        logging.info("GET_REQUEST POSICIONESHANDLER")
         usuarios = getPosiciones()
 
         self.render('posiciones.html', usuarios = usuarios)
@@ -387,12 +407,14 @@ class UsuariosHandler(Handler):
 
         usuarios = dbmodels.User.all()
         usuarios = list(usuarios)
+        logging.info("DB_CALL: User.all())")
 
         self.render('usuarios.html', usuarios = usuarios)
 
 ########## MAIN PAGE HANDLER ##########
 class MainPageHandler(BaseHandler):
     def getLoggeado(self):
+        logging.info("GET_REQUEST MAINPAGEHANDLER")
         ronda = self.request.get('ronda')
 
         now = datetime.now()
@@ -451,6 +473,7 @@ class MainPageHandler(BaseHandler):
         self.render("index.html", **params)
 
     def postLoggeado(self):
+        logging.info("POST_REQUEST MAINPAGEHANDLER")
         ronda = self.request.get('ronda')
         now = datetime.now()
 
@@ -504,6 +527,7 @@ class MainPageHandler(BaseHandler):
 ########## RESULTADOS HANDLER ##########
 class ResultadosHandler(BaseHandler):
     def getLoggeado(self):
+        logging.info("GET_REQUEST RESULTADOSHANDLER")
         ronda = self.request.get('ronda')
 
         now = datetime.now()
@@ -547,6 +571,7 @@ class ResultadosHandler(BaseHandler):
         self.render("resultados.html", **params)
 
     def postLoggeado(self):
+        logging.info("POST_REQUEST RESULTADOSHANDLER")
         ronda = self.request.get('ronda')
         fixture = getFixture(ronda)
         resultados = {}
@@ -585,6 +610,7 @@ class ResultadosHandler(BaseHandler):
 ########## RESULTADOS POR USUARIO HANDLER ##########
 class ResultadosPorUsuarioHandler(BaseHandler):
     def getLoggeado(self):
+        logging.info("GET_REQUEST RESULTADOSPORUSUARIOHANDLER")
         ronda = self.request.get('ronda')
 
         now = datetime.now()
@@ -630,6 +656,8 @@ class ResultadosPorUsuarioHandler(BaseHandler):
         usuarios.order("name")
         usuarios = list(usuarios)
 
+        logging.info("DB_CALL: User.all().order(name)")
+
         params = {"fixture": fixture,
                   "ronda": ronda,
                   "rondas": RONDAS,
@@ -646,5 +674,6 @@ class ResultadosPorUsuarioHandler(BaseHandler):
         self.render("ver_plantillas.html", **params)
 
     def postLoggeado(self):
+        logging.info("POST_REQUEST RESULTADOSPORUSUARIOHANDLER")
         usuario = self.request.get('usuario_seleccionado')
         self.redirect("/resultados_por_usuario?usuario=%s" % usuario)
