@@ -361,9 +361,9 @@ class LoginHandler(Handler):
         logging.info("GET_REQUEST LOGINHANDLER")
 
     def post(self):
-        logging.info("POST_REQUEST LOGINHANDLER")
         username = self.request.get("username")
         password = self.request.get("password")
+        logging.info("POST_REQUEST LOGINHANDLER (%s)" % username)
 
         user = dbmodels.User.validate(username, password)
         if user:
@@ -389,7 +389,7 @@ class ReglasHandler(Handler):
 ########## POSICIONES HANDLER ##########
 class PosicionesHandler(Handler):
     def get(self):
-        logging.info("GET_REQUEST POSICIONESHANDLER")
+        logging.info("GET_REQUEST POSICIONESHANDLER (%s)" % self.user.name)
         usuarios = getPosiciones()
 
         self.render('posiciones.html', usuarios = usuarios)
@@ -414,7 +414,7 @@ class UsuariosHandler(Handler):
 ########## MAIN PAGE HANDLER ##########
 class MainPageHandler(BaseHandler):
     def getLoggeado(self):
-        logging.info("GET_REQUEST MAINPAGEHANDLER")
+        logging.info("GET_REQUEST MAINPAGEHANDLER (%s)" % self.user.name)
         ronda = self.request.get('ronda')
 
         now = datetime.now()
@@ -473,7 +473,7 @@ class MainPageHandler(BaseHandler):
         self.render("index.html", **params)
 
     def postLoggeado(self):
-        logging.info("POST_REQUEST MAINPAGEHANDLER")
+        logging.info("POST_REQUEST MAINPAGEHANDLER (%s)" % self.user.name)
         ronda = self.request.get('ronda')
         now = datetime.now()
 
@@ -527,7 +527,7 @@ class MainPageHandler(BaseHandler):
 ########## RESULTADOS HANDLER ##########
 class ResultadosHandler(BaseHandler):
     def getLoggeado(self):
-        logging.info("GET_REQUEST RESULTADOSHANDLER")
+        logging.info("GET_REQUEST RESULTADOSHANDLER (%s)" % self.user.name)
         ronda = self.request.get('ronda')
 
         now = datetime.now()
@@ -571,7 +571,7 @@ class ResultadosHandler(BaseHandler):
         self.render("resultados.html", **params)
 
     def postLoggeado(self):
-        logging.info("POST_REQUEST RESULTADOSHANDLER")
+        logging.info("POST_REQUEST RESULTADOSHANDLER (%s)" % self.user.name) 
         ronda = self.request.get('ronda')
         fixture = getFixture(ronda)
         resultados = {}
@@ -610,7 +610,7 @@ class ResultadosHandler(BaseHandler):
 ########## RESULTADOS POR USUARIO HANDLER ##########
 class ResultadosPorUsuarioHandler(BaseHandler):
     def getLoggeado(self):
-        logging.info("GET_REQUEST RESULTADOSPORUSUARIOHANDLER")
+        logging.info("GET_REQUEST RESULTADOSPORUSUARIOHANDLER (%s)" % self.user.name)
         ronda = self.request.get('ronda')
 
         now = datetime.now()

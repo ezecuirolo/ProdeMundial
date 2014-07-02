@@ -1,0 +1,40 @@
+{
+    "Cuartos de final": {
+        "partidos": [
+            {
+                "equipo1": "Francia", 
+                "equipo2": "Alemania", 
+                "fecha": "2014/07/04", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Brasil", 
+                "equipo2": "Colombia", 
+                "fecha": "2014/07/04", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Argentina", 
+                "equipo2": "B\u00e9lgica", 
+                "fecha": "2014/07/05", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Holanda", 
+                "equipo2": "Costa Rica", 
+                "fecha": "2014/07/05", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            } 
+        ], 
+        "permite-modificar": true, 
+        "tipo": "non-grupo"
+    } 
+}
