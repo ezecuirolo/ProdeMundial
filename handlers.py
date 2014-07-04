@@ -20,7 +20,7 @@ USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
 RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 12 19:00:00 2014 GMT-0000'},
           {'ronda': "Octavos", 'limite': 'Sat June 28 15:00:00 2014 GMT-0000'},
-          {'ronda': "Cuartos", 'limite': 'Fri July 4 19:00:00 2014 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Fri July 4 15:00:00 2014 GMT-0000'},
           {'ronda': "Semifinal", 'limite': 'Tue July 8 19:00:00 2014 GMT-0000'},
           {'ronda': "TercerPuesto", 'limite': 'Sat July 12 19:00:00 2014 GMT-0000'},
           {'ronda': "Final", 'limite': 'Sun July 13 18:00:00 2014 GMT-0000'}]
