@@ -1,0 +1,24 @@
+{
+    "Semifinal": {
+        "partidos": [
+            {
+                "equipo1": "Alemania", 
+                "equipo2": "Brasil", 
+                "fecha": "2014/07/08", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            }, 
+            {
+                "equipo1": "Argentina", 
+                "equipo2": "Holanda", 
+                "fecha": "2014/07/09", 
+                "primerGol": "", 
+                "scoreEquipo1": "", 
+                "scoreEquipo2": ""
+            } 
+        ], 
+        "permite-modificar": true, 
+        "tipo": "non-grupo"
+    } 
+}
