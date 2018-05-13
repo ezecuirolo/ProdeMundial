@@ -1,0 +1,110 @@
+{% extends "base2.html" %}
+
+{% block body_content%}
+<h2>Registro</h2>
+
+<p>
+Crea tu usuario con tu nombre y apellido (sin espacios) para una fácil identificación.
+</p>
+
+<form method="post" class="text-left">
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Usuario</label>
+      <div class="col-sm-7">
+          <input type="text" class="form-control" name="username" value="{{username}}">
+      </div>
+      <div class="col-sm-3">
+        <small class="text-danger">
+            {{error_username}}
+        </small>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Contraseña</label>
+      <div class="col-sm-7">
+        <input type="password" name="password" class="form-control" value="">
+      </div>
+      <div class="col-sm-3">
+        <small class="text-danger">
+            {{error_password}}
+        </small>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Verificar contraseña</label>
+      <div class="col-sm-7">
+        <input type="password" name="verify" class="form-control" value="">
+      </div>
+      <div class="col-sm-3">
+        <small class="text-danger">
+            {{error_verify}}
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-7">
+          <input type="email" name="email" class="form-control" value="{{email}}">
+      </div>
+      <div class="col-sm-3">
+        <small class="text-danger">
+            {{error_email}}
+        </small>
+      </div>
+    </div>
+
+
+
+
+  <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <form>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label text-success">Email</label>
+      <div class="col-sm-7">
+        <input type="email" class="form-control is-valid" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label text-danger">Password</label>
+      <div class="col-sm-7">
+        <input type="password" class="form-control is-invalid" id="inputPassword" placeholder="Password">
+      </div>
+      <div class="col-sm-3">
+        <small id="passwordHelp" class="text-danger">
+          Must be 8-20 characters long.
+        </small>      
+      </div>
+    </div>
+  </form>
+</div>

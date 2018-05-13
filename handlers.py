@@ -18,12 +18,12 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 USUARIO_ESPECIAL_RESULTADOS = "resultados_de_los_partidos"
 
-RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 12 19:00:00 2014 GMT-0000'},
-          {'ronda': "Octavos", 'limite': 'Sat June 28 15:00:00 2014 GMT-0000'},
-          {'ronda': "Cuartos", 'limite': 'Fri July 4 15:00:00 2014 GMT-0000'},
-          {'ronda': "Semifinal", 'limite': 'Tue July 8 19:00:00 2014 GMT-0000'},
-          {'ronda': "TercerPuesto", 'limite': 'Sat July 12 19:00:00 2014 GMT-0000'},
-          {'ronda': "Final", 'limite': 'Sun July 13 18:00:00 2014 GMT-0000'}]
+RONDAS = [{'ronda': "Primera", 'limite': 'Thu June 14 12:00:00 2018 GMT-0000'},
+          {'ronda': "Octavos", 'limite': 'Sat June 30 11:00:00 2018 GMT-0000'},
+          {'ronda': "Cuartos", 'limite': 'Fri July 6 11:00:00 2018 GMT-0000'},
+          {'ronda': "Semifinal", 'limite': 'Tue July 10 15:00:00 2018 GMT-0000'},
+          {'ronda': "TercerPuesto", 'limite': 'Sat July 14 11:00:00 2018 GMT-0000'},
+          {'ronda': "Final", 'limite': 'Sun July 15 12:00:00 2018 GMT-0000'}]
               
 
 def getPosiciones():
@@ -302,7 +302,7 @@ class BaseHandler(Handler):
 ########## SIGN UP HANDLER ##########
 class SignUpHandler(Handler):
     def render_page(self, **params):
-        self.render("signup.html", **params)
+        self.render("signup2.html", **params)
     
     def get(self):
         self.render_page()
@@ -354,7 +354,7 @@ class SignUpHandler(Handler):
 ########## LOGIN HANDLER ##########
 class LoginHandler(Handler):
     def render_page(self, error = ""):
-        self.render("login.html", error_login = error)
+        self.render("login2.html", error_login = error)
 
     def get(self):
         self.render_page()
@@ -384,7 +384,7 @@ class LogoutHandler(Handler):
 ########## REGLAS HANDLER ##########
 class ReglasHandler(Handler):
     def get(self):
-        self.render('reglas.html')
+        self.render('reglas2.html')
 
 ########## POSICIONES HANDLER ##########
 class PosicionesHandler(Handler):
@@ -392,7 +392,7 @@ class PosicionesHandler(Handler):
         logging.info("GET_REQUEST POSICIONESHANDLER (%s)" % self.user.name)
         usuarios = getPosiciones()
 
-        self.render('posiciones.html', usuarios = usuarios)
+        self.render('posiciones2.html', usuarios = usuarios)
 
 ########## USUARIOS HANDLER ##########
 class UsuariosHandler(Handler):
@@ -470,7 +470,7 @@ class MainPageHandler(BaseHandler):
                   "jugadores": getJugadores()}
             
         #self.render("index.html", fixture = fixture, score = score, ronda = ronda, rondas = RONDAS, whoami="", mostrarExtras = mostrarExtras);
-        self.render("index.html", **params)
+        self.render("index2.html", **params)
 
     def postLoggeado(self):
         logging.info("POST_REQUEST MAINPAGEHANDLER (%s)" % self.user.name)
@@ -568,7 +568,7 @@ class ResultadosHandler(BaseHandler):
                   "jugadores": getJugadores()}
             
         #self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados", mostrarExtras = mostrarExtras);
-        self.render("resultados.html", **params)
+        self.render("resultados2.html", **params)
 
     def postLoggeado(self):
         logging.info("POST_REQUEST RESULTADOSHANDLER (%s)" % self.user.name) 
@@ -671,7 +671,7 @@ class ResultadosPorUsuarioHandler(BaseHandler):
                   "jugadores": getJugadores()}
             
         #self.render("index.html", fixture = fixture, ronda = ronda, rondas = RONDAS, whoami = "resultados", mostrarExtras = mostrarExtras);
-        self.render("ver_plantillas.html", **params)
+        self.render("ver_plantillas2.html", **params)
 
     def postLoggeado(self):
         logging.info("POST_REQUEST RESULTADOSPORUSUARIOHANDLER")

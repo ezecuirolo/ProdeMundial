@@ -2,71 +2,71 @@
     "Octavos de final": {
         "partidos": [
             {
-                "equipo1": "Brasil", 
-                "equipo2": "Chile", 
-                "fecha": "2014/06/28", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
-                "scoreEquipo2": ""
-            }, 
-            {
-                "equipo1": "Colombia", 
-                "equipo2": "Uruguay", 
-                "fecha": "2014/06/28", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
-                "scoreEquipo2": ""
-            }, 
-            {
-                "equipo1": "Holanda", 
-                "equipo2": "M\u00e9xico", 
-                "fecha": "2014/06/29", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
-                "scoreEquipo2": ""
-            }, 
-            {
-                "equipo1": "Costa Rica", 
-                "equipo2": "Grecia", 
-                "fecha": "2014/06/29", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
-                "scoreEquipo2": ""
-            }, 
-            {
-                "equipo1": "Francia", 
-                "equipo2": "Nigeria", 
-                "fecha": "2014/06/30", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
-                "scoreEquipo2": ""
-            }, 
-            {
-                "equipo1": "Alemania", 
-                "equipo2": "Argelia", 
-                "fecha": "2014/06/30", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/28",
+                "primerGol": "",
+                "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
-                "equipo1": "Argentina", 
-                "equipo2": "Suiza", 
-                "fecha": "2014/07/01", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/28",
+                "primerGol": "",
+                "scoreEquipo1": "",
                 "scoreEquipo2": ""
-            }, 
+            },
             {
-                "equipo1": "B\u00e9lgica", 
-                "equipo2": "EE.UU.", 
-                "fecha": "2014/07/01", 
-                "primerGol": "", 
-                "scoreEquipo1": "", 
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/29",
+                "primerGol": "",
+                "scoreEquipo1": "",
                 "scoreEquipo2": ""
-            } 
-        ], 
-        "permite-modificar": true, 
+            },
+            {
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/29",
+                "primerGol": "",
+                "scoreEquipo1": "",
+                "scoreEquipo2": ""
+            },
+            {
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/30",
+                "primerGol": "",
+                "scoreEquipo1": "",
+                "scoreEquipo2": ""
+            },
+            {
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/06/30",
+                "primerGol": "",
+                "scoreEquipo1": "",
+                "scoreEquipo2": ""
+            },
+            {
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/07/01",
+                "primerGol": "",
+                "scoreEquipo1": "",
+                "scoreEquipo2": ""
+            },
+            {
+                "equipo1": "",
+                "equipo2": "",
+                "fecha": "2014/07/01",
+                "primerGol": "",
+                "scoreEquipo1": "",
+                "scoreEquipo2": ""
+            }
+        ],
+        "permite-modificar": false,
         "tipo": "non-grupo"
-    } 
+    }
 }

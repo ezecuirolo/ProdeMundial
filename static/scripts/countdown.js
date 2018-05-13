@@ -48,11 +48,11 @@ function CountDownTimer(dt, id)
         }
 
 
-        countdown_element.getElementsByClassName('dias')[0].innerHTML = days;
+        document.getElementById('dias_restantes').innerHTML = days;
 
-        countdown_element.getElementsByClassName('horas')[0].innerHTML = hours;
-        countdown_element.getElementsByClassName('minutos')[0].innerHTML = minutes;
-        countdown_element.getElementsByClassName('segundos')[0].innerHTML = seconds;
+        document.getElementById('horas_restantes').innerHTML = hours;
+        document.getElementById('minutos_restantes').innerHTML = minutes;
+        document.getElementById('segundos_restantes').innerHTML = seconds;
 
         tiempo_restante -= 1;
     }

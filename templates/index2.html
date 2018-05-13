@@ -1,0 +1,76 @@
+{% extends "base2.html" %}
+
+{% block body_content %}
+<script src='/scripts/countdown.js'></script>
+
+<script>
+    CountDownTimer('{{ronda.diff_tiempo}}', 'countdown');
+</script>
+
+<!--
+<div class="instrucciones">
+    <p>
+    Completar el resultado de cada partido e indicar quién hace el primer gol en cada uno.
+    Se podrán hacer modificaciones hasta 24 hs antes del primer partido.
+    </p>
+</div>
+-->
+
+<div class="jumbotron">
+    <h2>Tiempo para realizar cambios en esta instancia</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="text-primary h2 font-weight-bold" id="dias_restantes">-</td>
+                <td class="text-primary h2 font-weight-bold" id="horas_restantes">-</td>
+                <td class="text-primary h2 font-weight-bold" id="minutos_restantes">-</td>
+                <td class="text-primary h2 font-weight-bold" id="segundos_restantes">-</td>
+            </tr>
+            <tr>
+                <td>DÍAS</td>
+                <td>HS</td>
+                <td>MIN</td>
+                <td>SEG</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--
+    <div class="row">
+        <div class="col-sm-1 text-primary  font-weight-bold" id="dias_restantes">-</div>
+        <div class="col-sm-1 text-primary  font-weight-bold" id="horas_restantes">-</div>
+        <div class="col-sm-1 text-primary  font-weight-bold" id="minutos_restantes">-</div>
+        <div class="col-sm-1 text-primary  font-weight-bold" id="segundos_restantes">-</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">DÍAS</div>
+        <div class="col-sm-1">HS</div>
+        <div class="col-sm-1">MIN</div>
+        <div class="col-sm-1">SEG</div>
+    </div>
+    -->
+</div>
+
+<!--
+{% if score %}
+<div class="score">
+    Puntos: {{score.scoreTotal}} <br/>
+</div>
+{% endif %}
+
+<div class="selector-rondas">
+    <ul class="menu-rondas">
+        {% for r in rondas %}
+        <li
+        {% if ronda.ronda == r.ronda %}
+        class="seleccionada"
+        {% endif %}
+        ><a href="/?ronda={{r.ronda}}">{{r.ronda}}</a> </li>
+        {% endfor %}
+    </ul>
+</div>
+
+-->
+{% include "rondas2.html" %}
+
+{% endblock %}
+

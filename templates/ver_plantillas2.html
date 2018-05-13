@@ -1,0 +1,36 @@
+{% extends "base2.html" %}
+
+{% block body_content %}
+
+<form method="post" class="text-left">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Usuario</label>
+    <select name="usuario_seleccionado" class="col-sm-4">
+                <option value="ninguno">-</option>
+                {% for usuario in usuarios %}
+                <option value="{{usuario.name}}"
+                {% if current_user == usuario.name %}
+                selected
+                {% endif %}
+                >{{usuario.name}}</option>
+                {% endfor %}
+    </select>
+
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-primary">Ver</button>
+    </div>
+  </div>
+</form>
+
+
+{% if score %}
+<div class="score row">
+    <div class="col-sm">Puntos: {{score.scoreTotal}} </div>
+</div>
+{% endif %}
+
+
+{% include "rondas2.html" %}
+
+{% endblock %}
+

@@ -1,0 +1,211 @@
+<form method="post">
+    {% for grupo,datos_grupo in fixture|dictsort %}
+    <div class="grupo row border mt-5">
+        <div class="col-sm-12">
+            <h3>{{grupo}}</h3>
+            {% for partido in datos_grupo.partidos %}
+            {% if loop.index is divisibleby 2 %}
+            <div class="row mt-2 mb-2 pt-2 pb-2 bg-light">
+            {% else %}
+            <div class="row mt-2 mb-2 ">
+            {% endif %}
+                <div class="col-sm-3">{{partido.equipo1}}</div>
+                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
+                                                                                                                                             {% if partido.primerGol == partido.equipo1 %}
+                                                                                                                                             checked
+                                                                                                                                             {% endif %}
+                                                                                                                                             {% if not permite_modificar %}
+                                                                                                                                             disabled
+                                                                                                                                             {% endif %}
+                                                                                                                                             ></div>
+                {% if permite_modificar %}
+                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"></div></div>
+                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"></div></div>
+                {% else %}
+                <div class="col-sm-2">{{partido.scoreEquipo1}}</div>
+                <div class="col-sm-2">{{partido.scoreEquipo2}}</div>
+                {% endif %}
+                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
+                                                                                                                                             {% if partido.primerGol == partido.equipo2 %}
+                                                                                                                                             checked
+                                                                                                                                             {% endif %}
+                                                                                                                                             {% if not permite_modificar %}
+                                                                                                                                             disabled
+                                                                                                                                             {% endif %}
+                                                                                                                                             ></div>
+                <div class="col-sm-3">{{partido.equipo2}}</div>
+            </div>
+                {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if mostrarExtras %}
+    <p>Cargá también los siguientes resultados:</p>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Campeón</label>
+      <div class="col-sm-2">
+        <select name="campeon"
+            {% if not permite_modificar %}
+            disabled
+            {% endif %}
+            >
+            <option value="ninguno">-</option>
+            {% for equipo in equipos %}
+            <option value="{{equipo.code}}"
+            {% if extras.campeon == equipo.code %}
+            selected="selected"
+            {% endif %}
+            >{{equipo.title}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Segundo</label>
+      <div class="col-sm-2">
+        <select name="segundo"
+            {% if not permite_modificar %}
+            disabled
+            {% endif %}
+            >
+            <option value="ninguno">-</option>
+            {% for equipo in equipos %}
+            <option value="{{equipo.code}}"
+            {% if extras.segundo == equipo.code %}
+            selected="selected"
+            {% endif %}
+            >{{equipo.title}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Tercero</label>
+      <div class="col-sm-2">
+        <select name="tercero"
+            {% if not permite_modificar %}
+            disabled
+            {% endif %}
+            >
+            <option value="ninguno">-</option>
+            {% for equipo in equipos %}
+            <option value="{{equipo.code}}"
+            {% if extras.tercero == equipo.code %}
+            selected="selected"
+            {% endif %}
+            >{{equipo.title}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Cuarto</label>
+      <div class="col-sm-2">
+        <select name="cuarto"
+            {% if not permite_modificar %}
+            disabled
+            {% endif %}
+            >
+            <option value="ninguno">-</option>
+            {% for equipo in equipos %}
+            <option value="{{equipo.code}}"
+            {% if extras.cuarto == equipo.code %}
+            selected="selected"
+            {% endif %}
+            >{{equipo.title}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Goleador Op. 1</label>
+      <div class="col-sm-2">
+                            <select name="goleador1"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.goleador1 == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.title}}</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Goleador Op. 2</label>
+      <div class="col-sm-2">
+                            <select name="goleador2"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.goleador2 == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.title}}</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Goleador Argentina</label>
+      <div class="col-sm-2">
+                            <select name="goleador_argentina"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.goleador1 == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.title}}</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Posición Argentina</label>
+      <div class="col-sm-2">
+                            <select name="posicion_argentina"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for pos in range(1, 33) %}
+                                <option value="{{pos}}"
+                                {% if extras.posicion_argentina == pos %}
+                                selected="selected"
+                                {% endif %}
+                                >{{pos}}</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+    {% endif %}
+
+    <input type="hidden" name="ronda" value="{{ronda.ronda}}"/>
+    {% if permite_modificar %}
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    {% endif %}
+</form>
+
