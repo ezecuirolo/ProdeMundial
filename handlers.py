@@ -207,15 +207,20 @@ def getScore(user):
                             scorePartido += 30
                             scoreTotal += 30
 
+
                         # 15 puntos por acertar score
                         if partidoUser['scoreEquipo1'] == partidoReal['scoreEquipo1'] and partidoUser['scoreEquipo2'] == partidoReal['scoreEquipo2']:
                             scorePartido += 15
                             scoreTotal += 15
 
-                    # 10 puntos por primer gol
+                    # 5 puntos por primer gol
                     if partidoUser['primerGol'] == partidoReal['primerGol'] and partidoReal['primerGol'] != '':
                         scorePartido += 5
                         scoreTotal += 5
+
+                    if partidoUser['equipo1'] == 'ARGENTINA':
+                        scoreTotal += scorePartido
+                        scorePartido *= 2
 
                     keyScore = 'score_' + ronda['ronda'] + "_" + partidoUser['equipo1'] + "_vs_" + partidoUser['equipo2']
                     score[keyScore] = scorePartido

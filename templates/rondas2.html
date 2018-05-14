@@ -9,7 +9,11 @@
             {% else %}
             <div class="row mt-2 mb-2 ">
             {% endif %}
+                {% if partido.equipo1 == 'ARGENTINA' %}
+                <div class="col-sm-3 font-weight-bold">{{partido.equipo1}}</div>
+                {% else %}
                 <div class="col-sm-3">{{partido.equipo1}}</div>
+                {% endif %}
                 <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
                                                                                                                                              {% if partido.primerGol == partido.equipo1 %}
                                                                                                                                              checked
@@ -33,7 +37,11 @@
                                                                                                                                              disabled
                                                                                                                                              {% endif %}
                                                                                                                                              ></div>
+                {% if partido.equipo2 == 'ARGENTINA' %}
+                <div class="col-sm-3 font-weight-bold">{{partido.equipo2}}</div>
+                {% else %}
                 <div class="col-sm-3">{{partido.equipo2}}</div>
+                {% endif %}
             </div>
                 {% endfor %}
         </div>
