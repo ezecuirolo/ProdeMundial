@@ -3,14 +3,16 @@
     <head>
         <title>Prode Mundial 2018</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/stylesheets/estudioindex.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-
         <div class="container text-center">
             <ul class="nav nav-tabs">
                 {% if user %}
@@ -38,7 +40,7 @@
                     <a class="nav-link" href="/reglas">Reglas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">{{user.name}} (Logout)</a>
+                    <a class="nav-link" href="/logout"><i class="fas fa-user"></i>{{user.name}} (Logout)</a>
                 </li>
                 {% else %}
                 <li class="nav-item">

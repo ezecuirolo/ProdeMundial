@@ -1,21 +1,19 @@
-<form method="post">
+<form method="post" class="partidos">
     {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="grupo row border mt-5">
         <div class="col-sm-12">
             <h3>{{grupo}}</h3>
             {% for partido in datos_grupo.partidos %}
-            {% if loop.index is divisibleby 2 %}
-            <div class="row mt-2 mb-2 pt-2 pb-2 bg-light">
-            {% else %}
-            <div class="row mt-2 mb-2 ">
-            {% endif %}
+            <div class="row mt-2 mb-2">
+                <div class="col-sm-3"><img src="/images/{{partido.codEquipo1}}.png" alt=""/>
                 {% if partido.equipo1 == 'ARGENTINA' %}
-                <div class="col-sm-3 font-weight-bold">{{partido.equipo1}}</div>
+                <span class="font-weight-bold">{{partido.equipo1}}</span>
                 {% else %}
-                <div class="col-sm-3">{{partido.equipo1}}</div>
+                <span>{{partido.equipo1}}</span>
                 {% endif %}
-                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo1}}"
-                                                                                                                                             {% if partido.primerGol == partido.equipo1 %}
+                </div>
+                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.codEquipo1}}_vs_{{partido.codEquipo2}}_primer_gol" value="{{partido.codEquipo1}}"
+                                                                                                                                             {% if partido.primerGol == partido.codEquipo1 %}
                                                                                                                                              checked
                                                                                                                                              {% endif %}
                                                                                                                                              {% if not permite_modificar %}
@@ -23,25 +21,27 @@
                                                                                                                                              {% endif %}
                                                                                                                                              ></div>
                 {% if permite_modificar %}
-                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score1" value="{{partido.scoreEquipo1}}"></div></div>
-                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_score2" value="{{partido.scoreEquipo2}}"></div></div>
+                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.codEquipo1}}_vs_{{partido.codEquipo2}}_score1" value="{{partido.scoreEquipo1}}"></div></div>
+                <div class="col-sm-2"><div class="form-group"><input type="text" class="form-control text-center" name="{{ronda.ronda}}_{{partido.codEquipo1}}_vs_{{partido.codEquipo2}}_score2" value="{{partido.scoreEquipo2}}"></div></div>
                 {% else %}
                 <div class="col-sm-2">{{partido.scoreEquipo1}}</div>
                 <div class="col-sm-2">{{partido.scoreEquipo2}}</div>
                 {% endif %}
-                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.equipo1}}_vs_{{partido.equipo2}}_primer_gol" value="{{partido.equipo2}}"
-                                                                                                                                             {% if partido.primerGol == partido.equipo2 %}
+                <div class="col-sm-1 radio"><input type="radio" name="{{ronda.ronda}}_{{partido.codEquipo1}}_vs_{{partido.codEquipo2}}_primer_gol" value="{{partido.codEquipo2}}"
+                                                                                                                                             {% if partido.primerGol == partido.codEquipo2 %}
                                                                                                                                              checked
                                                                                                                                              {% endif %}
                                                                                                                                              {% if not permite_modificar %}
                                                                                                                                              disabled
                                                                                                                                              {% endif %}
                                                                                                                                              ></div>
+                <div class="col-sm-3"><img src="/images/{{partido.codEquipo2}}.png" alt=""/>
                 {% if partido.equipo2 == 'ARGENTINA' %}
-                <div class="col-sm-3 font-weight-bold">{{partido.equipo2}}</div>
+                <span class="font-weight-bold">{{partido.equipo2}}</span>
                 {% else %}
-                <div class="col-sm-3">{{partido.equipo2}}</div>
+                <span>{{partido.equipo2}}</span>
                 {% endif %}
+                </div>
             </div>
                 {% endfor %}
         </div>
