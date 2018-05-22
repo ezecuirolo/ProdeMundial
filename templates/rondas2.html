@@ -59,12 +59,13 @@
             {% endif %}
             >
             <option value="ninguno">-</option>
-            {% for equipo in equipos %}
-            <option value="{{equipo.code}}"
-            {% if extras.campeon == equipo.code %}
+
+            {% for key, value in equipos | dictsort %}
+            <option value="{{key}}"
+            {% if extras.campeon == key %}
             selected="selected"
             {% endif %}
-            >{{equipo.title}}</option>
+            >{{value.title}}</option>
             {% endfor %}
         </select>
       </div>
@@ -79,12 +80,12 @@
             {% endif %}
             >
             <option value="ninguno">-</option>
-            {% for equipo in equipos %}
-            <option value="{{equipo.code}}"
-            {% if extras.segundo == equipo.code %}
+            {% for key, value in equipos | dictsort %}
+            <option value="{{key}}"
+            {% if extras.segundo == key %}
             selected="selected"
             {% endif %}
-            >{{equipo.title}}</option>
+            >{{value.title}}</option>
             {% endfor %}
         </select>
       </div>
@@ -99,12 +100,14 @@
             {% endif %}
             >
             <option value="ninguno">-</option>
-            {% for equipo in equipos %}
-            <option value="{{equipo.code}}"
-            {% if extras.tercero == equipo.code %}
+
+            {% for key, value in equipos | dictsort %}
+            <option value="{{key}}"
+            {% if extras.tercero == key %}
             selected="selected"
             {% endif %}
-            >{{equipo.title}}</option>
+            >{{value.title}}</option>
+
             {% endfor %}
         </select>
       </div>
@@ -119,12 +122,12 @@
             {% endif %}
             >
             <option value="ninguno">-</option>
-            {% for equipo in equipos %}
-            <option value="{{equipo.code}}"
-            {% if extras.cuarto == equipo.code %}
+            {% for key, value in equipos | dictsort %}
+            <option value="{{key}}"
+            {% if extras.cuarto == key %}
             selected="selected"
             {% endif %}
-            >{{equipo.title}}</option>
+            >{{value.title}}</option>
             {% endfor %}
         </select>
       </div>

@@ -18,6 +18,11 @@ body{
 	font-size: 62.5%
 }
 
+.reglas {
+    color:#dddddd;
+    font-size: 150%;
+}
+
 .btn, a , .btn-fwc, button {
 	-webkit-transition: All ease-out .5s;
 	-moz-transition: All ease-out .5s;
