@@ -325,7 +325,7 @@ ul.redes li a:hover i{
 	padding-bottom:25px;
 }
 .grupo h3:before{
-	content:"grupo ";
+	content:"";
 }
 .grupo h3:after {
     content: "";

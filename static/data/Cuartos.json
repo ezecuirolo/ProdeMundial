@@ -2,39 +2,47 @@
     "Cuartos de final": {
         "partidos": [
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/04",
+                "fecha": "2018/07/06",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/04",
+                "fecha": "2018/07/06",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/05",
+                "fecha": "2018/07/07",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/05",
+                "fecha": "2018/07/07",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": false,
+        "permite_modificar": false,
         "tipo": "non-grupo"
     }
 }

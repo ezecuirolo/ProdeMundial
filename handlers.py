@@ -121,8 +121,8 @@ def getFixture(ronda, username = None):
         # completo con los datos llenados previamente
         for key,value in fixture.iteritems():
             for partido in value['partidos']:
-                equipo1 = partido['equipo1']
-                equipo2 = partido['equipo2']
+                equipo1 = partido['codEquipo1']
+                equipo2 = partido['codEquipo2']
                 keyScore1 = ronda + "_" + equipo1 + "_vs_" + equipo2 + "_score1"
                 scoreEquipo1 = resultados[keyScore1]
                 keyScore2 = ronda + "_" + equipo1 + "_vs_" + equipo2 + "_score2"
@@ -167,17 +167,17 @@ def getScore(user):
             else:
                 score[extra['campo']] = 0
 
-        if resultadoUser['goleador1'] != 'ninguno' and resultadoUser['goleador1'] == resultadoReal['goleador1']:
+        if resultadoUser['bota_oro1'] != 'ninguno' and resultadoUser['bota_oro1'] == resultadoReal['bota_oro1']:
             scoreTotal += 100
-            score['goleador1'] = 100
+            score['bota_oro1'] = 100
         else:
-            score['goleador1'] = 0
+            score['bota_oro1'] = 0
 
-        if resultadoUser['goleador2'] != 'ninguno' and resultadoUser['goleador2'] == resultadoReal['goleador1']:
+        if resultadoUser['bota_oro2'] != 'ninguno' and resultadoUser['bota_oro2'] == resultadoReal['bota_oro1']:
             scoreTotal += 70
-            score['goleador2'] = 70
+            score['bota_oro2'] = 70
         else:
-            score['goleador2'] = 0
+            score['bota_oro2'] = 0
             
 
 
@@ -479,8 +479,7 @@ class MainPageHandler(BaseHandler):
                   "permite_modificar": permite_modificar,
                   "equipos": getEquipos(),
                   "jugadores": getJugadores()}
-            
-        #self.render("index.html", fixture = fixture, score = score, ronda = ronda, rondas = RONDAS, whoami="", mostrarExtras = mostrarExtras);
+
         self.render("index2.html", **params)
 
     def postLoggeado(self):
@@ -503,8 +502,11 @@ class MainPageHandler(BaseHandler):
             resultados['segundo'] = self.request.get('segundo')
             resultados['tercero'] = self.request.get('tercero')
             resultados['cuarto'] = self.request.get('cuarto')
-            resultados['goleador1'] = self.request.get('goleador1')
-            resultados['goleador2'] = self.request.get('goleador2')
+            resultados['bota_oro1'] = self.request.get('bota_oro1')
+            resultados['bota_oro2'] = self.request.get('bota_oro2')
+            resultados['balon_oro'] = self.request.get('balon_oro')
+            resultados['guante_oro'] = self.request.get('guante_oro')
+            resultados['goleador_argentina'] = self.request.get('goleador_argentina')
             posicion_argentina = self.request.get('posicion_argentina')
             if posicion_argentina != 'ninguno':
                 resultados['posicion_argentina'] = int(posicion_argentina)
@@ -513,12 +515,12 @@ class MainPageHandler(BaseHandler):
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
-                keyScore1 = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score1"
-                keyScore2 = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score2"
+                keyScore1 = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_score1"
+                keyScore2 = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_score2"
                 valueScore1 = self.request.get(keyScore1)
                 valueScore2 = self.request.get(keyScore2)
-                
-                keyPrimerGol = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_primer_gol"
+
+                keyPrimerGol = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_primer_gol"
                 valuePrimerGol = self.request.get(keyPrimerGol)
 
                 resultados[keyScore1] = valueScore1
@@ -587,13 +589,18 @@ class ResultadosHandler(BaseHandler):
         fixture = getFixture(ronda)
         resultados = {}
 
+
+
         if ronda == 'Primera':
             resultados['campeon'] = self.request.get('campeon')
             resultados['segundo'] = self.request.get('segundo')
             resultados['tercero'] = self.request.get('tercero')
             resultados['cuarto'] = self.request.get('cuarto')
-            resultados['goleador1'] = self.request.get('goleador1')
-            resultados['goleador2'] = self.request.get('goleador2')
+            resultados['bota_oro1'] = self.request.get('bota_oro1')
+            resultados['bota_oro2'] = self.request.get('bota_oro2')
+            resultados['balon_oro'] = self.request.get('balon_oro')
+            resultados['guante_oro'] = self.request.get('guante_oro')
+            resultados['goleador_argentina'] = self.request.get('goleador_argentina')
             posicion_argentina = self.request.get('posicion_argentina')
             if posicion_argentina != 'ninguno':
                 resultados['posicion_argentina'] = int(posicion_argentina)
@@ -602,12 +609,12 @@ class ResultadosHandler(BaseHandler):
 
         for grupo, datos_grupo in fixture.iteritems():
             for partido in datos_grupo["partidos"]:
-                keyScore1 = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score1"
-                keyScore2 = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_score2"
+                keyScore1 = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_score1"
+                keyScore2 = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_score2"
                 valueScore1 = self.request.get(keyScore1)
                 valueScore2 = self.request.get(keyScore2)
 
-                keyPrimerGol = ronda + "_" + partido["equipo1"] + "_vs_" + partido["equipo2"] + "_primer_gol"
+                keyPrimerGol = ronda + "_" + partido["codEquipo1"] + "_vs_" + partido["codEquipo2"] + "_primer_gol"
                 valuePrimerGol = self.request.get(keyPrimerGol)
 
                 resultados[keyScore1] = valueScore1

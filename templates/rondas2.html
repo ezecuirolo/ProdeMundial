@@ -2,10 +2,12 @@
     {% for grupo,datos_grupo in fixture|dictsort %}
     <div class="grupo row border mt-5">
         <div class="col-sm-12">
-            <h3>{{grupo}}</h3>
+            <h3>{% if datos_grupo.tipo == "grupo" %}Grupo{% endif %} {{grupo}}</h3>
+            {% if datos_grupo.permite_modificar %}
             {% for partido in datos_grupo.partidos %}
             <div class="row mt-2 mb-2">
-                <div class="col-sm-3"><img src="/images/{{partido.codEquipo1}}.png" alt=""/>
+                <div class="col-sm-3">
+                    <img src="/images/{{partido.codEquipo1}}.png" alt=""/>
                 {% if partido.equipo1 == 'ARGENTINA' %}
                 <span class="font-weight-bold">{{partido.equipo1}}</span>
                 {% else %}
@@ -44,6 +46,7 @@
                 </div>
             </div>
                 {% endfor %}
+                {% endif %}
         </div>
     </div>
     {% endfor %}
@@ -225,7 +228,7 @@
                                 {% for jugador in jugadores %}
                                 {% if jugador.country == 'Argentina' %}
                                 <option value="{{jugador.key}}"
-                                {% if extras.goleador1 == jugador.key %}
+                                {% if extras.goleador_argentina == jugador.key %}
                                 selected="selected"
                                 {% endif %}
                                 >{{jugador.jugador}}</option>

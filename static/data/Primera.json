@@ -62,7 +62,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "B": {
@@ -128,7 +128,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "C": {
@@ -194,7 +194,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "D": {
@@ -260,7 +260,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "E": {
@@ -326,7 +326,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "F": {
@@ -392,7 +392,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "G": {
@@ -458,7 +458,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     },
     "H": {
@@ -524,7 +524,7 @@
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": true,
+        "permite_modificar": true,
         "tipo": "grupo"
     }
 }
