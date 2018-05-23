@@ -319,9 +319,11 @@ class SignUpHandler(Handler):
         password = self.request.get("password")
         verify = self.request.get("verify")
         email = self.request.get("email")
+        celular = self.request.get("celular")
 
         params["username"] = username
         params["email"] = email
+        params["celular"] = celular
 
         error_en_form = False
 
@@ -345,10 +347,14 @@ class SignUpHandler(Handler):
             params["error_email"] = "email invalido"
             error_en_form = True
 
+        if not utils.valid_celular_form(celular):
+            params["error_celular"] = "celular invalido"
+            error_en_form = True
+
         if error_en_form:
             self.render_page(**params)
         else:
-            user = dbmodels.User.register(username, password, email)
+            user = dbmodels.User.register(username, password, email, celular)
             user.put()
 
             self.login(user)

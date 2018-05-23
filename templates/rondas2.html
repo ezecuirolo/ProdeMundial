@@ -134,9 +134,9 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Goleador Op. 1</label>
+      <label class="col-sm-2 col-form-label">Bota de oro Op. 1</label>
       <div class="col-sm-2">
-                            <select name="goleador1"
+                            <select name="bota_oro1"
                                 {% if not permite_modificar %}
                                 disabled
                                 {% endif %}
@@ -144,19 +144,19 @@
                                 <option value="ninguno">-</option>
                                 {% for jugador in jugadores %}
                                 <option value="{{jugador.key}}"
-                                {% if extras.goleador1 == jugador.key %}
+                                {% if extras.bota_oro1 == jugador.key %}
                                 selected="selected"
                                 {% endif %}
-                                >{{jugador.title}}</option>
+                                >{{jugador.jugador}} ({{jugador.country}})</option>
                                 {% endfor %}
                             </select>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Goleador Op. 2</label>
+      <label class="col-sm-2 col-form-label">Bota de oro Op. 2</label>
       <div class="col-sm-2">
-                            <select name="goleador2"
+                            <select name="bota_oro2"
                                 {% if not permite_modificar %}
                                 disabled
                                 {% endif %}
@@ -164,10 +164,50 @@
                                 <option value="ninguno">-</option>
                                 {% for jugador in jugadores %}
                                 <option value="{{jugador.key}}"
-                                {% if extras.goleador2 == jugador.key %}
+                                {% if extras.bota_oro2 == jugador.key %}
                                 selected="selected"
                                 {% endif %}
-                                >{{jugador.title}}</option>
+                                >{{jugador.jugador}} ({{jugador.country}})</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Balon de oro</label>
+      <div class="col-sm-2">
+                            <select name="balon_oro"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.balon_oro == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.jugador}} ({{jugador.country}})</option>
+                                {% endfor %}
+                            </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Guante de oro</label>
+      <div class="col-sm-2">
+                            <select name="guante_oro"
+                                {% if not permite_modificar %}
+                                disabled
+                                {% endif %}
+                                >
+                                <option value="ninguno">-</option>
+                                {% for jugador in jugadores %}
+                                <option value="{{jugador.key}}"
+                                {% if extras.guante_oro == jugador.key %}
+                                selected="selected"
+                                {% endif %}
+                                >{{jugador.jugador}} ({{jugador.country}})</option>
                                 {% endfor %}
                             </select>
       </div>
@@ -183,11 +223,13 @@
                                 >
                                 <option value="ninguno">-</option>
                                 {% for jugador in jugadores %}
+                                {% if jugador.country == 'Argentina' %}
                                 <option value="{{jugador.key}}"
                                 {% if extras.goleador1 == jugador.key %}
                                 selected="selected"
                                 {% endif %}
-                                >{{jugador.title}}</option>
+                                >{{jugador.jugador}}</option>
+                                {% endif %}
                                 {% endfor %}
                             </select>
       </div>
@@ -216,7 +258,7 @@
 
     <input type="hidden" name="ronda" value="{{ronda.ronda}}"/>
     {% if permite_modificar %}
-    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <button type="submit" class="btn-fwc">Guardar cambios</button>
     {% endif %}
 </form>
 
