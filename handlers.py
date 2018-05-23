@@ -155,9 +155,12 @@ def getScore(user):
         resultadoReal = json.loads(resultadoReal.resultados)
 
         extras = [{'campo': 'campeon', 'puntos': 100},
-                  {'campo': 'segundo', 'puntos': 80}, 
-                  {'campo': 'tercero', 'puntos': 60}, 
-                  {'campo': 'cuarto', 'puntos': 50}, 
+                  {'campo': 'segundo', 'puntos': 80},
+                  {'campo': 'tercero', 'puntos': 70},
+                  {'campo': 'cuarto', 'puntos': 60},
+                  {'campo': 'balon_oro', 'puntos': 100},
+                  {'campo': 'guante_oro', 'puntos': 100},
+                  {'campo': 'goleador_argentina', 'puntos': 100},
                   {'campo': 'posicion_argentina', 'puntos': 100}]
 
         for extra in extras:
