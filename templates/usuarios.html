@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
 {% block body_content %}
-<h2>Posiciones</h2>
+<h2>Usuarios</h2>
 
 <div class="posiciones">
             {% for usuario in usuarios %}
-            {{usuario.name}} - {{usuario.email}} <br/>
+            {{usuario.name}} , {{usuario.email}} , {{usuario.celular}} <br/>
             {% endfor %}
 </div>
 

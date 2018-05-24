@@ -2,71 +2,87 @@
     "Octavos de final": {
         "partidos": [
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/28",
+                "fecha": "2018/06/30",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/28",
+                "fecha": "2018/06/30",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/29",
+                "fecha": "2018/07/01",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/29",
+                "fecha": "2018/07/01",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/30",
+                "fecha": "2018/07/02",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/06/30",
+                "fecha": "2018/07/02",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/01",
+                "fecha": "2018/07/03",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/01",
+                "fecha": "2018/07/03",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": false,
+        "permite_modificar": false,
         "tipo": "non-grupo"
     }
 }

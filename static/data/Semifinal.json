@@ -2,23 +2,27 @@
     "Semifinal": {
         "partidos": [
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/08",
+                "fecha": "2018/07/10",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             },
             {
+                "codEquipo1": "",
                 "equipo1": "",
+                "codEquipo2": "",
                 "equipo2": "",
-                "fecha": "2014/07/09",
+                "fecha": "2018/07/10",
                 "primerGol": "",
                 "scoreEquipo1": "",
                 "scoreEquipo2": ""
             }
         ],
-        "permite-modificar": false,
+        "permite_modificar": false,
         "tipo": "non-grupo"
     }
 }
