@@ -13,6 +13,9 @@ handlers:
 - url: /images/(.*\.png)
   static_files: static/images/\1
   upload: static/images/(.*\.png)
+- url: /images/(.*\.svg)
+  static_files: static/images/\1
+  upload: static/images/(.*\.svg)
 - url: /images/(.*\.jpg)
   static_files: static/images/\1
   upload: static/images/(.*\.jpg)

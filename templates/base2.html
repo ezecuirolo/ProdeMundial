@@ -13,6 +13,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     </head>
     <body>
+    <div class="rowTop">
+  <button role="button" class="menuSlide toggle-sidebar"> Menu<span class="label">MENU</span> </button>
+</div>
+<aside id="sidemenu" class="sidemenu">
+  <div id="contentAside">
+    <div class="topBack"><span class="btnBack"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</span></div>
+    <ul class="cd-accordion-menu animated menuMain">
+      {% if user %}
+      <li> <a href="/">Inicio</a> </li>
+      <li> <a href="/posiciones">Posiciones</a> </li>
+      <li> <a href="/resultados_por_usuario">Resultados por participante</a> </li>
+      <li> <a href="/resultados">Resultados reales</a> </li>
+      <li> <a href="/reglas">Reglas</a> </li>
+      <li> <a href="/logout"><i class="fas fa-user"></i>{{user.name}} (Logout)</a> </li>
+      {% else %}
+      <li> <a href="/reglas">Reglas</a> </li>
+      <li> <a href="/login">Login</a> </li>
+      <li> <a href="/signup">Registrarse</a> </li>
+      {% endif %}
+    </ul>
+  </div>
+</aside>
+<div class="overlay"></div>
         <div class="container text-center">
             <ul class="nav nav-tabs">
                 {% if user %}
@@ -31,7 +54,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/reglas">Reglas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item user">
                     <a class="nav-link" href="/logout"><i class="fas fa-user"></i>{{user.name}} (Logout)</a>
                 </li>
                 {% else %}
@@ -70,3 +93,53 @@
 
     </body>
 </html>
+<script>
+$('.toggle-sidebar').click(function(event) {
+		event.preventDefault();
+		var aside$ =  $('body');
+		aside$.addClass('open');
+});
+
+$('.overlay').click(function(event) {
+		event.preventDefault();
+		var aside$ =  $('body');
+		aside$.removeClass('open');
+});
+$('.menuButton').click(function(event) {
+	event.preventDefault();
+	var aside2$ =  $('#sidemenu');
+	aside2$.children().removeClass('openA2');
+	var aside1$ =  $('#contentAside');
+	aside1$.removeClass('closeA1');
+});
+$('.btnBack').click(function(event) {
+		event.preventDefault();
+		var aside$ =  $('body');
+		aside$.removeClass('open');
+});
+</script>
+<script src="../static/scripts/jquery.touchSwipe.min.js"></script>
+<script>
+jQuery(document).ready(function(){
+
+	$('.cd-accordion-menu li:has(ul)').addClass('has-children');
+	//$(".cd-accordion-menu li:has(ul)").append('<i class="fa fa-plus"></i>');
+
+	var accordionsMenu = $('.cd-accordion-menu');
+
+	if( accordionsMenu.length > 0 ) {
+
+		accordionsMenu.each(function(){
+			var accordion = $(this);
+			//detect change in the input[type="checkbox"] value
+
+			accordion.on('change', 'input[type="checkbox"]', function(){
+				var checkbox = $(this);
+
+				( checkbox.prop('checked') ) ? checkbox.siblings('ul').attr('style', 'display:none;').slideDown(300) : checkbox.siblings('ul').attr('style', 'display:block;').slideUp(300);
+
+			  	});
+		});
+	}
+});
+</script>
