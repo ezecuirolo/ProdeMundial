@@ -489,6 +489,16 @@ article#puestoArgentina{
 	background-position:center top;
 	background-image:url(../images/argentina2018.jpg);
 }
+article#guantedeOro{
+	flex:1;
+	background-position:center top;
+	background-image:url(../images/fillol78.jpg);
+}
+article#balondeOro{
+	flex:1;
+	background-position:center top;
+	background-image:url(../images/pele70.jpg);
+}
 section#extras article:after {
     content: "";
     display: block;
@@ -528,8 +538,14 @@ section#extras article .content span{
 .flagMobile{
 	display:none;
 }
+.rowTop, aside#sidemenu {
+    display: none;
+}
 /*-----------------------------*/
 @media screen and (max-width: 800px){
+.rowTop, aside#sidemenu {
+    display: block;
+}
 article.grupo {
     width: 100%;
     margin: 0;
@@ -967,5 +983,8 @@ color:#bcb187;
 }
 #sidemenu ul li li:last-child a{
 color:#FFF;
+}
+.container.text-center{
+	padding:0 !important;
 }
 }
