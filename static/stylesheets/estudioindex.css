@@ -995,4 +995,7 @@ form .col-sm-7 {
     flex: 1;
     max-width: none;
 }
+form .col-form-label {
+    text-align: left;
+}
 }
