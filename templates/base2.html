@@ -21,7 +21,18 @@
     <div class="topBack"><span class="btnBack"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</span></div>
     <ul class="cd-accordion-menu animated menuMain">
       {% if user %}
-      <li> <a href="/">Inicio</a> </li>
+      <li class="has-children"> <a>Instancias</a>
+        <input type="checkbox" name ="Instancias" id="Instancias">
+        <label></label>
+        <ul>
+          <li><a class="dropdown-item" href="/">Primera</a></li>
+          <li><a class="dropdown-item disabled" href="/?ronda=Octavos">Octavos</a></li>
+          <li><a class="dropdown-item disabled" href="/?ronda=Cuartos">Cuartos</a></li>
+          <li><a class="dropdown-item disabled" href="/?ronda=Semifinal">Semifinal</a></li>
+          <li><a class="dropdown-item disabled" href="/?ronda=TercerPuesto">Tercer puesto</a></li>
+          <li><a class="dropdown-item disabled" href="/?ronda=Final">Final</a></li>
+        </ul>
+      </li>
       <li> <a href="/posiciones">Posiciones</a> </li>
       <li> <a href="/resultados_por_usuario">Resultados por participante</a> </li>
       <li> <a href="/resultados">Resultados reales</a> </li>
