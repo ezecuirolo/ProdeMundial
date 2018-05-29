@@ -117,12 +117,16 @@ h2{
 	font-size:1.4em;
 }
 form.text-left {
-    max-width: 600px;
     margin: 0 auto;
-	text-align: center !important;
+    text-align: center !important;
 }
+
+form.text-left .row {
+    justify-content: center;
+}
+
 form.text-left h2{
-	padding-bottom:20px;
+    padding-bottom:20px;
 }
 .col-sm-7 {
     -ms-flex: 0 0 70.333333%;
@@ -512,17 +516,14 @@ article#puestoArgentina{
 	background-image:url(/images/argentina2018.jpg);
 }
 article#guantedeOro{
- 	flex:1;
  	background-position:center top;
  	background-image:url(/images/fillol78.jpg);
 }
 article#balondeOro{
- 	flex:1;
  	background-position:center top;
  	background-image:url(/images/pele70.jpg);
 }
 article#fairPlay{
- 	flex:1;
  	background-position:center top;
  	background-image:url(/images/fairPlay.jpg);
 }
@@ -557,7 +558,9 @@ section#extras article .content span{
 .text-primary {
     color: #FFF !important;
 }
-
+.container {
+    max-width: 1400px !important;
+}
 /*-------------------------*/
 .table td, .table th {
     color: #FFF;
@@ -566,11 +569,15 @@ section#extras article .content span{
 	display:none;
 }
 
-//.rowTop, aside#sidemenu {
-//    display: none;
-//}
+.rowTop, aside#sidemenu {
+   display: none;
+}
 /*-----------------------------*/
 @media screen and (max-width: 800px){
+.rowTop, aside#sidemenu {
+   display: block;
+}	
+	
 article.grupo {
     width: 100%;
     margin: 0;
@@ -1014,6 +1021,7 @@ color:#FFF;
 	padding:0 !important;
 }
 form.text-left {
+    width: 80%;
     padding-top: 50px;
 }
 form .col-sm-7 {
