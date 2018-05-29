@@ -572,6 +572,12 @@ section#extras article .content span{
 .rowTop, aside#sidemenu {
    display: none;
 }
+
+.jumbotron .text-primary {
+    color: #FFF !important;
+    font-size: 30px !important;
+}
+
 /*-----------------------------*/
 @media screen and (max-width: 800px){
 .rowTop, aside#sidemenu {
