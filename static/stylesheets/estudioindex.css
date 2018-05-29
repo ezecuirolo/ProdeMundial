@@ -297,6 +297,23 @@ ul.redes li a:hover i{
 	  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.8);
 	  z-index:2;
 }
+.text-left {
+    text-align: left!important;
+    color: #FFF;
+}
+.text-left a {
+    color: #bcb187;
+}
+table.table a {
+    font-size: 13px;
+    color: #bcb187;
+    font-weight: 700;
+}
+table.table td {
+    font-size: 13px;
+    color: #bcb187;
+    font-weight: 700;
+}
 /*-----------PARTIDOS----*/
 form.partidos {
     text-align: center;
