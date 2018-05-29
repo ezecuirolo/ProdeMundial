@@ -146,7 +146,7 @@
         </article>
         <article id="goleador1">
           <div class="content">
-            <h2>BOTA DE ORO</h2>
+            <h2>GOLEADOR DEL MUNDIAL</h2>
             <span>opcion 1</span>
             <select name="bota_oro1"
                                 {% if not permite_modificar %}
@@ -168,7 +168,7 @@
         </article>
         <article id="goleador2">
           <div class="content">
-            <h2>GOLEADOR</h2>
+            <h2>GOLEADOR DEL MUNDIAL</h2>
             <span>opcion 2</span>
             <select name="bota_oro2"
                                 {% if not permite_modificar %}
@@ -190,7 +190,7 @@
         </article>
         <article id="balondeOro">
           <div class="content">
-            <h2>BALON DE ORO</h2>
+            <h2>MEJOR JUGADOR</h2>
             <select name="balon_oro"
                                 {% if not permite_modificar %}
                                 disabled
@@ -230,6 +230,29 @@
             </select>
           </div>
         </article>
+
+        <article id="fairPlay">
+          <div class="content">
+            <h2>FAIR PLAY</h2>
+            <select name="fair_play"
+            {% if not permite_modificar %}
+            disabled
+            {% endif %}
+            >
+            <option value="ninguno">-</option>
+            {% for key, value in equipos | dictsort %}
+            <option value="{{key}}"
+            {% if extras.fair_play == key %}
+            selected="selected"
+            {% endif %}
+            >
+            {{value.title}}
+            </option>
+            {% endfor %}
+            </select>
+          </div>
+        </article>
+
         <article id="goleadorArgentina">
           <div class="content">
             <h2>GOLEADOR DE ARGENTINA</h2>

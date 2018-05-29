@@ -64,6 +64,8 @@ body{
     margin-bottom: 0;
 }
 
+
+
 h2{
 	font-family: 'dusha_plusregular', sans-serif !important;
 	color:#FFF;
@@ -292,11 +294,31 @@ ul.redes li a:hover i{
 }
 .jumbotron .table, .jumbotron h2{
 	position:relative;
-      max-width: 1140px;
-	  margin:0 auto;
-	  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.8);
-	  z-index:2;
+    max-width: 1140px;
+	margin:0 auto;
+	text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.8);
+	z-index:2;
 }
+
+.text-left {
+    text-align: left!important;
+    color: #FFF;
+    font-size: 1.5em;
+}
+.text-left a {
+    color: #bcb187;
+}
+table.table a {
+    font-size: 13px;
+    color: #bcb187;
+    font-weight: 700;
+}
+table.table td {
+    font-size: 13px;
+    color: #bcb187;
+    font-weight: 700;
+}
+
 /*-----------PARTIDOS----*/
 form.partidos {
     text-align: center;
@@ -489,6 +511,21 @@ article#puestoArgentina{
 	background-position:center top;
 	background-image:url(/images/argentina2018.jpg);
 }
+article#guantedeOro{
+ 	flex:1;
+ 	background-position:center top;
+ 	background-image:url(/images/fillol78.jpg);
+}
+article#balondeOro{
+ 	flex:1;
+ 	background-position:center top;
+ 	background-image:url(/images/pele70.jpg);
+}
+article#fairPlay{
+ 	flex:1;
+ 	background-position:center top;
+ 	background-image:url(/images/fairPlay.jpg);
+}
 section#extras article:after {
     content: "";
     display: block;
@@ -528,6 +565,10 @@ section#extras article .content span{
 .flagMobile{
 	display:none;
 }
+
+//.rowTop, aside#sidemenu {
+//    display: none;
+//}
 /*-----------------------------*/
 @media screen and (max-width: 800px){
 article.grupo {
@@ -968,4 +1009,21 @@ color:#bcb187;
 #sidemenu ul li li:last-child a{
 color:#FFF;
 }
+
+.container.text-center{
+	padding:0 !important;
+}
+form.text-left {
+    padding-top: 50px;
+}
+form .col-sm-7 {
+    -ms-flex: 1;
+    flex: 1;
+    max-width: none;
+}
+
+form .col-form-label {
+    text-align: left;
+}
+
 }

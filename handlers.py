@@ -160,6 +160,7 @@ def getScore(user):
                   {'campo': 'cuarto', 'puntos': 60},
                   {'campo': 'balon_oro', 'puntos': 100},
                   {'campo': 'guante_oro', 'puntos': 100},
+                  {'campo': 'fair_play', 'puntos': 50},
                   {'campo': 'goleador_argentina', 'puntos': 100},
                   {'campo': 'posicion_argentina', 'puntos': 100}]
 
@@ -450,7 +451,8 @@ class MainPageHandler(BaseHandler):
 
         fixture = getFixture(ronda['ronda'], self.user.name)
 
-        score = getScore(self.user.name)
+        ##score = getScore(self.user.name)
+        score = 0
 
         mostrarExtras = False
         extras = {}
@@ -509,6 +511,7 @@ class MainPageHandler(BaseHandler):
             resultados['bota_oro2'] = self.request.get('bota_oro2')
             resultados['balon_oro'] = self.request.get('balon_oro')
             resultados['guante_oro'] = self.request.get('guante_oro')
+            resultados['fair_play'] = self.request.get('fair_play')
             resultados['goleador_argentina'] = self.request.get('goleador_argentina')
             posicion_argentina = self.request.get('posicion_argentina')
             if posicion_argentina != 'ninguno':
@@ -603,6 +606,7 @@ class ResultadosHandler(BaseHandler):
             resultados['bota_oro2'] = self.request.get('bota_oro2')
             resultados['balon_oro'] = self.request.get('balon_oro')
             resultados['guante_oro'] = self.request.get('guante_oro')
+            resultados['fair_play'] = self.request.get('fair_play')
             resultados['goleador_argentina'] = self.request.get('goleador_argentina')
             posicion_argentina = self.request.get('posicion_argentina')
             if posicion_argentina != 'ninguno':
